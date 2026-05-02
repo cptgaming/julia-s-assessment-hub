@@ -14,7 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      assessments: {
+        Row: {
+          age: number | null
+          assessment_date: string
+          assessment_type: string
+          athlete_name: string
+          created_at: string
+          data: Json
+          evaluator_cref: string
+          evaluator_name: string
+          evaluator_role: string
+          id: string
+          modality: string
+          updated_at: string
+        }
+        Insert: {
+          age?: number | null
+          assessment_date?: string
+          assessment_type?: string
+          athlete_name: string
+          created_at?: string
+          data?: Json
+          evaluator_cref?: string
+          evaluator_name?: string
+          evaluator_role?: string
+          id?: string
+          modality?: string
+          updated_at?: string
+        }
+        Update: {
+          age?: number | null
+          assessment_date?: string
+          assessment_type?: string
+          athlete_name?: string
+          created_at?: string
+          data?: Json
+          evaluator_cref?: string
+          evaluator_name?: string
+          evaluator_role?: string
+          id?: string
+          modality?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
