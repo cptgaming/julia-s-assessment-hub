@@ -7,7 +7,7 @@ import { isAuthed } from "@/lib/auth";
 import { AssessmentReport } from "@/components/AssessmentReport";
 import type { Assessment, AssessmentData } from "@/lib/assessment-types";
 import { toast } from "sonner";
-import html2canvas from "html2canvas";
+import { toJpeg } from "html-to-image";
 import jsPDF from "jspdf";
 
 export const Route = createFileRoute("/avaliacao/$id")({
@@ -93,15 +93,20 @@ function AvaliacaoPage() {
       await handleSave();
       // Wait next paint to ensure DOM is settled
       await new Promise((r) => setTimeout(r, 200));
-      const canvas = await html2canvas(reportRef.current, {
-        scale: 2,
-        useCORS: true,
+      const node = reportRef.current;
+      const width = node.offsetWidth;
+      const height = node.offsetHeight;
+      const imgData = await toJpeg(node, {
+        quality: 0.95,
+        pixelRatio: 2,
         backgroundColor: "#ffffff",
+        cacheBust: true,
+        width,
+        height,
       });
-      const imgData = canvas.toDataURL("image/jpeg", 0.95);
       const pdf = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
       const pageW = pdf.internal.pageSize.getWidth();
-      const imgH = (canvas.height * pageW) / canvas.width;
+      const imgH = (height * pageW) / width;
       pdf.addImage(imgData, "JPEG", 0, 0, pageW, imgH);
       pdf.save(`Avaliacao-${assessment?.athlete_name?.replace(/\s+/g, "-") ?? "atleta"}-${assessment?.assessment_date}.pdf`);
       toast.success("PDF gerado!");
