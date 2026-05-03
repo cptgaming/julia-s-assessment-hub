@@ -44,6 +44,7 @@ type Props = {
   assessment: Assessment;
   history?: Assessment[]; // up to 3 (most recent first) including current
   editable?: boolean;
+  fillHeight?: boolean;
   onChange?: (patch: Partial<Assessment>) => void;
   onDataChange?: (patch: Partial<AssessmentData>) => void;
 };
