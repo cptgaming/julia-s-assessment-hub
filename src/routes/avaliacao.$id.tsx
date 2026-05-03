@@ -107,15 +107,8 @@ function AvaliacaoPage() {
       const pdf = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
       const pageW = pdf.internal.pageSize.getWidth();
       const pageH = pdf.internal.pageSize.getHeight();
-      // Fit entire report into a single A4 page (preserve aspect ratio)
-      const ratio = Math.min(pageW / width, pageH / height);
-      const renderW = width * ratio * (pageW / width); // = pageW * (height fit ? scale : 1)
-      const imgW = width * ratio;
-      const imgH = height * ratio;
-      const offsetX = (pageW - imgW) / 2;
-      const offsetY = (pageH - imgH) / 2;
-      void renderW;
-      pdf.addImage(imgData, "JPEG", offsetX, offsetY, imgW, imgH);
+      // Fill the entire A4 page (stretch to edges, like the reference)
+      pdf.addImage(imgData, "JPEG", 0, 0, pageW, pageH);
       pdf.save(`Avaliacao-${assessment?.athlete_name?.replace(/\s+/g, "-") ?? "atleta"}-${assessment?.assessment_date}.pdf`);
       toast.success("PDF gerado!");
     } catch (e) {
@@ -169,13 +162,13 @@ function AvaliacaoPage() {
             onDataChange={handleDataChange}
           />
         </div>
-        {/* Off-screen read-only mirror used for PDF capture */}
+        {/* Off-screen read-only mirror used for PDF capture (A4 aspect: 820 x 1160) */}
         <div
-          style={{ position: "fixed", left: "-10000px", top: 0, width: "820px", background: "#ffffff", pointerEvents: "none" }}
+          style={{ position: "fixed", left: "-10000px", top: 0, width: "820px", height: "1160px", background: "#ffffff", pointerEvents: "none" }}
           aria-hidden
         >
-          <div ref={reportRef}>
-            <AssessmentReport assessment={assessment} history={history} />
+          <div ref={reportRef} style={{ width: "820px", height: "1160px", display: "flex", flexDirection: "column" }}>
+            <AssessmentReport assessment={assessment} history={history} fillHeight />
           </div>
         </div>
       </main>
