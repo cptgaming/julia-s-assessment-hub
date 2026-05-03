@@ -94,28 +94,16 @@ function AvaliacaoPage() {
       // Wait next paint to ensure the read-only mirror is rendered
       await new Promise((r) => setTimeout(r, 300));
       const node = reportRef.current;
-      // Target A4 aspect (210x297mm). Capture at natural size then scale uniformly
-      // so the report fills the entire page without distortion.
-      const baseWidth = 820;
-      const naturalHeight = node.offsetHeight;
-      const targetHeight = Math.round((baseWidth * 297) / 210); // ≈ 1160
-      const scale = targetHeight / naturalHeight;
-      const finalWidth = Math.round(baseWidth * scale);
-      const finalHeight = targetHeight;
-      // Apply transform scale on a wrapper-friendly capture
-      node.style.transformOrigin = "top left";
-      node.style.transform = `scale(${scale})`;
-      await new Promise((r) => setTimeout(r, 50));
+      const width = node.offsetWidth;
+      const height = node.offsetHeight;
       const imgData = await toJpeg(node, {
         quality: 0.95,
         pixelRatio: 2,
         backgroundColor: "#ffffff",
         cacheBust: true,
-        width: finalWidth,
-        height: finalHeight,
+        width,
+        height,
       });
-      // Reset transform
-      node.style.transform = "";
       const pdf = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
       const pageW = pdf.internal.pageSize.getWidth();
       const pageH = pdf.internal.pageSize.getHeight();
