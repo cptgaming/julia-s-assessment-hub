@@ -107,17 +107,15 @@ function AvaliacaoPage() {
       const pdf = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
       const pageW = pdf.internal.pageSize.getWidth();
       const pageH = pdf.internal.pageSize.getHeight();
-      const imgH = (height * pageW) / width;
-      let heightLeft = imgH;
-      let position = 0;
-      pdf.addImage(imgData, "JPEG", 0, position, pageW, imgH);
-      heightLeft -= pageH;
-      while (heightLeft > 0) {
-        position = heightLeft - imgH;
-        pdf.addPage();
-        pdf.addImage(imgData, "JPEG", 0, position, pageW, imgH);
-        heightLeft -= pageH;
-      }
+      // Fit entire report into a single A4 page (preserve aspect ratio)
+      const ratio = Math.min(pageW / width, pageH / height);
+      const renderW = width * ratio * (pageW / width); // = pageW * (height fit ? scale : 1)
+      const imgW = width * ratio;
+      const imgH = height * ratio;
+      const offsetX = (pageW - imgW) / 2;
+      const offsetY = (pageH - imgH) / 2;
+      void renderW;
+      pdf.addImage(imgData, "JPEG", offsetX, offsetY, imgW, imgH);
       pdf.save(`Avaliacao-${assessment?.athlete_name?.replace(/\s+/g, "-") ?? "atleta"}-${assessment?.assessment_date}.pdf`);
       toast.success("PDF gerado!");
     } catch (e) {
