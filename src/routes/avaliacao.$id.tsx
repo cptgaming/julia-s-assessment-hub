@@ -91,8 +91,8 @@ function AvaliacaoPage() {
     try {
       // Auto-save first
       await handleSave();
-      // Wait next paint to ensure DOM is settled
-      await new Promise((r) => setTimeout(r, 200));
+      // Wait next paint to ensure the read-only mirror is rendered
+      await new Promise((r) => setTimeout(r, 300));
       const node = reportRef.current;
       const width = node.offsetWidth;
       const height = node.offsetHeight;
@@ -106,8 +106,18 @@ function AvaliacaoPage() {
       });
       const pdf = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
       const pageW = pdf.internal.pageSize.getWidth();
+      const pageH = pdf.internal.pageSize.getHeight();
       const imgH = (height * pageW) / width;
-      pdf.addImage(imgData, "JPEG", 0, 0, pageW, imgH);
+      let heightLeft = imgH;
+      let position = 0;
+      pdf.addImage(imgData, "JPEG", 0, position, pageW, imgH);
+      heightLeft -= pageH;
+      while (heightLeft > 0) {
+        position = heightLeft - imgH;
+        pdf.addPage();
+        pdf.addImage(imgData, "JPEG", 0, position, pageW, imgH);
+        heightLeft -= pageH;
+      }
       pdf.save(`Avaliacao-${assessment?.athlete_name?.replace(/\s+/g, "-") ?? "atleta"}-${assessment?.assessment_date}.pdf`);
       toast.success("PDF gerado!");
     } catch (e) {
@@ -152,7 +162,7 @@ function AvaliacaoPage() {
       </header>
 
       <main className="py-6">
-        <div ref={reportRef} className="mx-auto w-fit shadow-xl">
+        <div className="mx-auto w-fit shadow-xl">
           <AssessmentReport
             assessment={assessment}
             history={history}
@@ -161,7 +171,17 @@ function AvaliacaoPage() {
             onDataChange={handleDataChange}
           />
         </div>
+        {/* Off-screen read-only mirror used for PDF capture */}
+        <div
+          style={{ position: "fixed", left: "-10000px", top: 0, width: "820px", background: "#ffffff", pointerEvents: "none" }}
+          aria-hidden
+        >
+          <div ref={reportRef}>
+            <AssessmentReport assessment={assessment} history={history} />
+          </div>
+        </div>
       </main>
+
     </div>
   );
 }
