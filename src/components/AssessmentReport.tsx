@@ -121,6 +121,7 @@ export function AssessmentReport({
   assessment,
   history = [],
   editable = false,
+  fillHeight = false,
   onChange,
   onDataChange,
 }: Props) {
@@ -137,7 +138,6 @@ export function AssessmentReport({
 
   const fcSeries = series.map((a) => ({ x: shortDate(a.assessment_date), y: a.data.indicadores.fc_repouso.valor }));
   const sonoSeries = series.map((a) => {
-    // Convert "Xh Ymin" to a 0-10 score-like number; if not parseable, fall back to a heuristic by level
     const horas = a.data.indicadores.qualidade_sono.horas;
     const m = horas.match(/(\d+)h\s*(\d+)?/);
     let score = 6;
@@ -155,7 +155,10 @@ export function AssessmentReport({
   return (
     <div
       id="bps-report"
-      className="mx-auto w-[820px] bg-background p-8 text-foreground"
+      className={cn(
+        "mx-auto w-[820px] bg-background p-8 text-foreground",
+        fillHeight && "flex h-full flex-col justify-between gap-3 p-6",
+      )}
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       {/* HEADER */}
