@@ -94,8 +94,9 @@ function AvaliacaoPage() {
       // Wait next paint to ensure the read-only mirror is rendered
       await new Promise((r) => setTimeout(r, 300));
       const node = reportRef.current;
-      const width = node.offsetWidth;
-      const height = node.offsetHeight;
+      // Render at A4 aspect ratio (210x297) so the capture fills the page natively
+      const width = 820;
+      const height = Math.round((width * 297) / 210);
       const imgData = await toJpeg(node, {
         quality: 0.95,
         pixelRatio: 2,
@@ -103,6 +104,7 @@ function AvaliacaoPage() {
         cacheBust: true,
         width,
         height,
+        style: { width: `${width}px`, height: `${height}px` },
       });
       const pdf = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
       const pageW = pdf.internal.pageSize.getWidth();
