@@ -162,7 +162,7 @@ function AvaliacaoPage() {
       </header>
 
       <main className="py-6">
-        <div ref={reportRef} className="mx-auto w-fit shadow-xl">
+        <div className="mx-auto w-fit shadow-xl">
           <AssessmentReport
             assessment={assessment}
             history={history}
@@ -171,7 +171,17 @@ function AvaliacaoPage() {
             onDataChange={handleDataChange}
           />
         </div>
+        {/* Off-screen read-only mirror used for PDF capture */}
+        <div
+          style={{ position: "fixed", left: "-10000px", top: 0, width: "820px", background: "#ffffff", pointerEvents: "none" }}
+          aria-hidden
+        >
+          <div ref={reportRef}>
+            <AssessmentReport assessment={assessment} history={history} />
+          </div>
+        </div>
       </main>
+
     </div>
   );
 }
