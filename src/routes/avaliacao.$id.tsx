@@ -92,10 +92,11 @@ function AvaliacaoPage() {
       // Auto-save first
       await handleSave();
       // Wait next paint to ensure the read-only mirror is rendered
-      await new Promise((r) => setTimeout(r, 300));
+      await new Promise((r) => setTimeout(r, 400));
       const node = reportRef.current;
-      const width = node.scrollWidth;
-      const height = node.scrollHeight;
+      // A4 ratio: 210x297mm. Capture at fixed A4 aspect (820 x 1160) to avoid distortion.
+      const width = 820;
+      const height = 1160;
       const imgData = await toJpeg(node, {
         quality: 0.95,
         pixelRatio: 2,
@@ -108,7 +109,7 @@ function AvaliacaoPage() {
       const pdf = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
       const pageW = pdf.internal.pageSize.getWidth();
       const pageH = pdf.internal.pageSize.getHeight();
-      // Stretch the captured content to fill the entire A4 page on a single page
+      // Both source and target share A4 aspect ratio → no distortion
       pdf.addImage(imgData, "JPEG", 0, 0, pageW, pageH, undefined, "FAST");
       pdf.save(`Avaliacao-${assessment?.athlete_name?.replace(/\s+/g, "-") ?? "atleta"}-${assessment?.assessment_date}.pdf`);
       toast.success("PDF gerado!");
