@@ -163,13 +163,13 @@ function AvaliacaoPage() {
             onDataChange={handleDataChange}
           />
         </div>
-        {/* Off-screen read-only mirror used for PDF capture (A4 aspect: 820 x 1160) */}
+        {/* Off-screen read-only mirror used for PDF capture (auto height, escalado depois pra caber em A4) */}
         <div
-          style={{ position: "fixed", left: "-10000px", top: 0, width: "820px", height: "1160px", background: "#ffffff", pointerEvents: "none" }}
+          style={{ position: "fixed", left: "-10000px", top: 0, width: "820px", background: "#ffffff", pointerEvents: "none" }}
           aria-hidden
         >
-          <div ref={reportRef} style={{ width: "820px", height: "1160px", display: "flex", flexDirection: "column" }}>
-            <AssessmentReport assessment={assessment} history={history} fillHeight />
+          <div ref={reportRef} style={{ width: "820px", background: "#ffffff" }}>
+            <AssessmentReport assessment={assessment} history={history} />
           </div>
         </div>
       </main>
