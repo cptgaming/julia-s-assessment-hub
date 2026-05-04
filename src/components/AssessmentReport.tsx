@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, type ReactNode } from "react";
 import {
   Activity,
   AlertTriangle,
@@ -779,7 +779,7 @@ function InfoField({
   editable,
 }: {
   label: string;
-  children: React.ReactNode;
+  children: ReactNode;
   editable?: boolean;
 }) {
   return (
@@ -797,7 +797,7 @@ function MetaRow({
 }: {
   icon: typeof Calendar;
   label: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <div className="flex items-start gap-2">
@@ -820,8 +820,8 @@ function IndicatorRow({
   icon: typeof HeartPulse;
   title: string;
   subtitle?: string;
-  value: React.ReactNode;
-  interpretation: React.ReactNode;
+  value: ReactNode;
+  interpretation: ReactNode;
 }) {
   return (
     <tr>
@@ -849,7 +849,7 @@ function AlertCard({
   icon: typeof AlertTriangle;
   title: string;
   tone: "warning" | "success";
-  content: React.ReactNode;
+  content: ReactNode;
 }) {
   const styles =
     tone === "warning"

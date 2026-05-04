@@ -7,7 +7,7 @@ import { isAuthed } from "@/lib/auth";
 import { AssessmentReport } from "@/components/AssessmentReport";
 import type { Assessment, AssessmentData } from "@/lib/assessment-types";
 import { toast } from "sonner";
-import { toJpeg } from "html-to-image";
+import { toPng } from "html-to-image";
 import jsPDF from "jspdf";
 
 export const Route = createFileRoute("/avaliacao/$id")({
@@ -94,23 +94,26 @@ function AvaliacaoPage() {
       // Wait next paint to ensure the read-only mirror is rendered
       await new Promise((r) => setTimeout(r, 400));
       const node = reportRef.current;
-      // A4 ratio: 210x297mm. Capture at fixed A4 aspect (820 x 1160) to avoid distortion.
       const width = 820;
       const height = 1160;
-      const imgData = await toJpeg(node, {
-        quality: 0.95,
-        pixelRatio: 2,
+      const imgData = await toPng(node, {
+        pixelRatio: 3,
         backgroundColor: "#ffffff",
         cacheBust: true,
         width,
         height,
-        style: { transform: "none" },
+        canvasWidth: width * 3,
+        canvasHeight: height * 3,
+        style: {
+          transform: "none",
+          width: `${width}px`,
+          height: `${height}px`,
+        },
       });
       const pdf = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
       const pageW = pdf.internal.pageSize.getWidth();
       const pageH = pdf.internal.pageSize.getHeight();
-      // Both source and target share A4 aspect ratio → no distortion
-      pdf.addImage(imgData, "JPEG", 0, 0, pageW, pageH, undefined, "FAST");
+      pdf.addImage(imgData, "PNG", 0, 0, pageW, pageH, undefined, "FAST");
       pdf.save(`Avaliacao-${assessment?.athlete_name?.replace(/\s+/g, "-") ?? "atleta"}-${assessment?.assessment_date}.pdf`);
       toast.success("PDF gerado!");
     } catch (e) {
