@@ -94,8 +94,8 @@ function AvaliacaoPage() {
       // Wait next paint to ensure the read-only mirror is rendered
       await new Promise((r) => setTimeout(r, 300));
       const node = reportRef.current;
-      const width = node.offsetWidth;
-      const height = node.offsetHeight;
+      const width = node.scrollWidth;
+      const height = node.scrollHeight;
       const imgData = await toJpeg(node, {
         quality: 0.95,
         pixelRatio: 2,
@@ -103,12 +103,13 @@ function AvaliacaoPage() {
         cacheBust: true,
         width,
         height,
+        style: { transform: "none" },
       });
       const pdf = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
       const pageW = pdf.internal.pageSize.getWidth();
       const pageH = pdf.internal.pageSize.getHeight();
-      // Fill the entire A4 page (stretch to edges, like the reference)
-      pdf.addImage(imgData, "JPEG", 0, 0, pageW, pageH);
+      // Stretch the captured content to fill the entire A4 page on a single page
+      pdf.addImage(imgData, "JPEG", 0, 0, pageW, pageH, undefined, "FAST");
       pdf.save(`Avaliacao-${assessment?.athlete_name?.replace(/\s+/g, "-") ?? "atleta"}-${assessment?.assessment_date}.pdf`);
       toast.success("PDF gerado!");
     } catch (e) {
