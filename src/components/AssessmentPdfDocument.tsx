@@ -477,17 +477,17 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
 
         {/* Footer */}
         <View style={s.footer}>
-          <View style={{ flex: 1, flexDirection: "row" }}>
-            <Text style={{ fontSize: 7, color: C.orange, marginRight: 4 }}>★</Text>
-            <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 6.5, fontWeight: 700, color: C.dark, letterSpacing: 0.4 }}>IMPORTANTE</Text>
-              <Text style={{ fontSize: 6.5, color: C.muted, lineHeight: 1.35 }}>
-                Este relatório não substitui diagnóstico médico. Em caso de dúvidas ou sintomas, procure um profissional de saúde.
-              </Text>
-            </View>
+          <View style={{ width: 150, justifyContent: "center" }}>
+            <Text style={{ fontSize: 6, fontWeight: 700, color: C.dark, letterSpacing: 0.4 }}>★ IMPORTANTE</Text>
+            <Text style={{ fontSize: 6, color: C.muted, lineHeight: 1.3, marginTop: 1 }}>
+              Este relatório não substitui diagnóstico médico. Em caso de dúvidas ou sintomas, procure um profissional de saúde.
+            </Text>
           </View>
-          <View style={{ alignItems: "center", width: 110 }}>
-            <Image src={juliaLogo} style={{ width: 80, height: 40, objectFit: "contain" }} />
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <Image src={runnerLogo} style={{ width: 70, height: 32, objectFit: "contain" }} />
+          </View>
+          <View style={{ width: 150, alignItems: "flex-end", justifyContent: "center" }}>
+            <Image src={juliaLogo} style={{ width: 80, height: 36, objectFit: "contain" }} />
           </View>
         </View>
       </Page>
