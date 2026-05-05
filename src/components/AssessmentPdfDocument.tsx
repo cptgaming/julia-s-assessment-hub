@@ -1,6 +1,7 @@
 import { Document, Page, Text, View, Image, StyleSheet, Svg, Polyline, Line as SvgLine, Circle } from "@react-pdf/renderer";
 import bpsLogo from "@/assets/logo-bps.jpeg";
 import juliaLogo from "@/assets/logo-julia.jpeg";
+import runnerLogo from "@/assets/logo-runner.jpeg";
 import type { Assessment, Level } from "@/lib/assessment-types";
 import { LEVEL_LABEL, ZONAS } from "@/lib/assessment-types";
 
@@ -49,8 +50,9 @@ const shortDate = (iso: string) => {
 
 const s = StyleSheet.create({
   page: {
-    paddingHorizontal: 22,
-    paddingVertical: 18,
+    paddingTop: 10,
+    paddingHorizontal: 18,
+    paddingBottom: 14,
     fontSize: 8,
     color: C.text,
     backgroundColor: "#fff",
@@ -59,40 +61,41 @@ const s = StyleSheet.create({
   // Header
   header: {
     flexDirection: "row",
-    borderBottomWidth: 2,
+    borderBottomWidth: 1.5,
     borderBottomColor: C.orange,
-    paddingBottom: 8,
-    marginBottom: 8,
+    paddingBottom: 5,
+    marginBottom: 6,
+    alignItems: "flex-start",
   },
   headerCol: { flexDirection: "column" },
-  logoBox: { width: 110, justifyContent: "center", alignItems: "flex-start" },
-  logo: { width: 100, height: 55, objectFit: "contain" },
-  titleBox: { flex: 1, alignItems: "center", justifyContent: "flex-start" },
-  titleSmall: { fontSize: 17, fontWeight: 700, color: C.dark, letterSpacing: 0.4 },
-  titleBig: { fontSize: 22, fontWeight: 700, color: C.orange, letterSpacing: 0.4, marginTop: 1 },
-  titleRule: { width: 70, height: 2.5, backgroundColor: C.orange, marginTop: 4, opacity: 0.7 },
+  logoBox: { width: 80, justifyContent: "flex-start", alignItems: "flex-start" },
+  logo: { width: 78, height: 38, objectFit: "contain" },
+  titleBox: { flex: 1, alignItems: "center", justifyContent: "flex-start", paddingTop: 2 },
+  titleSmall: { fontSize: 12, fontWeight: 700, color: C.dark, letterSpacing: 0.4 },
+  titleBig: { fontSize: 16, fontWeight: 700, color: C.orange, letterSpacing: 0.4, marginTop: 0 },
+  titleRule: { width: 50, height: 2, backgroundColor: C.orange, marginTop: 2, opacity: 0.7 },
   athleteCard: {
-    marginTop: 6,
+    marginTop: 4,
     borderWidth: 1,
     borderColor: C.border,
     borderRadius: 4,
-    padding: 6,
+    padding: 4,
     flexDirection: "row",
     flexWrap: "wrap",
-    width: 290,
+    width: 270,
   },
-  athleteField: { width: "50%", paddingHorizontal: 3, paddingVertical: 2 },
-  fieldLabel: { fontSize: 6, fontWeight: 700, color: C.dark, letterSpacing: 0.4 },
-  fieldValue: { fontSize: 8, fontWeight: 700, marginTop: 1 },
+  athleteField: { width: "50%", paddingHorizontal: 3, paddingVertical: 1 },
+  fieldLabel: { fontSize: 5.5, fontWeight: 700, color: C.dark, letterSpacing: 0.4 },
+  fieldValue: { fontSize: 7.5, fontWeight: 700, marginTop: 1 },
   metaBox: {
-    width: 145,
+    width: 130,
     borderWidth: 1,
     borderColor: C.border,
     borderRadius: 4,
-    padding: 6,
+    padding: 4,
   },
-  metaRow: { flexDirection: "row", marginBottom: 4 },
-  metaDot: { width: 6, height: 6, borderRadius: 3, backgroundColor: C.orange, marginTop: 2, marginRight: 4 },
+  metaRow: { flexDirection: "row", marginBottom: 3 },
+  metaDot: { width: 5, height: 5, borderRadius: 2.5, backgroundColor: C.orange, marginTop: 2, marginRight: 3 },
   // Section titles
   sectionTitle: {
     flexDirection: "row",
@@ -149,8 +152,9 @@ const s = StyleSheet.create({
   // Footer
   footer: {
     flexDirection: "row",
-    borderTopWidth: 2, borderTopColor: C.orange,
-    paddingTop: 6, marginTop: 6,
+    borderTopWidth: 1.5, borderTopColor: C.orange,
+    paddingTop: 4, marginTop: "auto",
+    alignItems: "center",
   },
 });
 
@@ -474,17 +478,17 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
 
         {/* Footer */}
         <View style={s.footer}>
-          <View style={{ flex: 1, flexDirection: "row" }}>
-            <Text style={{ fontSize: 7, color: C.orange, marginRight: 4 }}>★</Text>
-            <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 6.5, fontWeight: 700, color: C.dark, letterSpacing: 0.4 }}>IMPORTANTE</Text>
-              <Text style={{ fontSize: 6.5, color: C.muted, lineHeight: 1.35 }}>
-                Este relatório não substitui diagnóstico médico. Em caso de dúvidas ou sintomas, procure um profissional de saúde.
-              </Text>
-            </View>
+          <View style={{ width: 150, justifyContent: "center" }}>
+            <Text style={{ fontSize: 6, fontWeight: 700, color: C.dark, letterSpacing: 0.4 }}>★ IMPORTANTE</Text>
+            <Text style={{ fontSize: 6, color: C.muted, lineHeight: 1.3, marginTop: 1 }}>
+              Este relatório não substitui diagnóstico médico. Em caso de dúvidas ou sintomas, procure um profissional de saúde.
+            </Text>
           </View>
-          <View style={{ alignItems: "center", width: 110 }}>
-            <Image src={juliaLogo} style={{ width: 80, height: 40, objectFit: "contain" }} />
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <Image src={runnerLogo} style={{ width: 70, height: 32, objectFit: "contain" }} />
+          </View>
+          <View style={{ width: 150, alignItems: "flex-end", justifyContent: "center" }}>
+            <Image src={juliaLogo} style={{ width: 80, height: 36, objectFit: "contain" }} />
           </View>
         </View>
       </Page>
