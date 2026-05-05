@@ -152,8 +152,9 @@ const s = StyleSheet.create({
   // Footer
   footer: {
     flexDirection: "row",
-    borderTopWidth: 2, borderTopColor: C.orange,
-    paddingTop: 6, marginTop: 6,
+    borderTopWidth: 1.5, borderTopColor: C.orange,
+    paddingTop: 4, marginTop: "auto",
+    alignItems: "center",
   },
 });
 
