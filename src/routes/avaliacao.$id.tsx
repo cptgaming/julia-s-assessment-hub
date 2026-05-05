@@ -1,14 +1,14 @@
 import { createFileRoute, Link, useNavigate, redirect } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Save, Download, Loader2 } from "lucide-react";
 import { isAuthed } from "@/lib/auth";
 import { AssessmentReport } from "@/components/AssessmentReport";
+import { AssessmentPdfDocument } from "@/components/AssessmentPdfDocument";
 import type { Assessment, AssessmentData } from "@/lib/assessment-types";
 import { toast } from "sonner";
-import { toPng } from "html-to-image";
-import jsPDF from "jspdf";
+import { pdf } from "@react-pdf/renderer";
 
 export const Route = createFileRoute("/avaliacao/$id")({
   component: AvaliacaoPage,
