@@ -1,6 +1,7 @@
 import { Document, Page, Text, View, Image, StyleSheet, Svg, Polyline, Line as SvgLine, Circle } from "@react-pdf/renderer";
 import bpsLogo from "@/assets/logo-bps.jpeg";
 import juliaLogo from "@/assets/logo-julia.jpeg";
+import runnerLogo from "@/assets/logo-runner.jpeg";
 import type { Assessment, Level } from "@/lib/assessment-types";
 import { LEVEL_LABEL, ZONAS } from "@/lib/assessment-types";
 
