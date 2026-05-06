@@ -488,10 +488,10 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             </Text>
           </View>
           <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <Image src={runnerLogo} style={{ width: 70, height: 32, objectFit: "contain" }} />
+            <Image src={juliaLogo} style={{ width: 80, height: 36, objectFit: "contain" }} />
           </View>
           <View style={{ width: 150, alignItems: "flex-end", justifyContent: "center" }}>
-            <Image src={juliaLogo} style={{ width: 80, height: 36, objectFit: "contain" }} />
+            <Image src={runnerLogo} style={{ width: 70, height: 32, objectFit: "contain" }} />
           </View>
         </View>
       </Page>
