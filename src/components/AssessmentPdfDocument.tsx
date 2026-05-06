@@ -50,9 +50,9 @@ const shortDate = (iso: string) => {
 
 const s = StyleSheet.create({
   page: {
-    paddingTop: 10,
+    paddingTop: 0,
     paddingHorizontal: 18,
-    paddingBottom: 14,
+    paddingBottom: 10,
     fontSize: 8,
     color: C.text,
     backgroundColor: "#fff",
@@ -63,13 +63,16 @@ const s = StyleSheet.create({
     flexDirection: "row",
     borderBottomWidth: 1.5,
     borderBottomColor: C.orange,
-    paddingBottom: 5,
-    marginBottom: 6,
+    paddingBottom: 4,
+    marginLeft: -18,
+    marginRight: -18,
+    paddingRight: 18,
+    marginBottom: 5,
     alignItems: "flex-start",
   },
   headerCol: { flexDirection: "column" },
-  logoBox: { width: 80, justifyContent: "flex-start", alignItems: "flex-start" },
-  logo: { width: 78, height: 38, objectFit: "contain" },
+  logoBox: { width: 110, justifyContent: "flex-start", alignItems: "flex-start" },
+  logo: { width: 110, height: 64, objectFit: "contain" },
   titleBox: { flex: 1, alignItems: "center", justifyContent: "flex-start", paddingTop: 2 },
   titleSmall: { fontSize: 12, fontWeight: 700, color: C.dark, letterSpacing: 0.4 },
   titleBig: { fontSize: 16, fontWeight: 700, color: C.orange, letterSpacing: 0.4, marginTop: 0 },
@@ -314,7 +317,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         </View>
 
         {/* 2. Indicadores + 3. Evolução */}
-        <View style={{ flexDirection: "row", gap: 6, marginTop: 6 }}>
+        <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           <View style={{ flex: 1.06 }}>
             <SectionTitle n={2} title="Indicadores-chave" />
             <View style={s.table}>
@@ -364,7 +367,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         </View>
 
         {/* 4 + 5: Zonas */}
-        <View style={{ flexDirection: "row", gap: 6, marginTop: 6 }}>
+        <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           <View style={{ flex: 1.14 }}>
             <SectionTitle n={4} title="Zonas de Treinamento Personalizadas" />
             <View style={s.table}>
@@ -409,7 +412,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         </View>
 
         {/* 6 + 7 + 8 */}
-        <View style={{ flexDirection: "row", gap: 6, marginTop: 6 }}>
+        <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           {/* 6 Estilo de vida */}
           <View style={{ flex: 0.96 }}>
             <SectionTitle n={6} title="Estilo de Vida e Recuperação" />
@@ -485,10 +488,10 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             </Text>
           </View>
           <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <Image src={runnerLogo} style={{ width: 70, height: 32, objectFit: "contain" }} />
+            <Image src={juliaLogo} style={{ width: 80, height: 36, objectFit: "contain" }} />
           </View>
           <View style={{ width: 150, alignItems: "flex-end", justifyContent: "center" }}>
-            <Image src={juliaLogo} style={{ width: 80, height: 36, objectFit: "contain" }} />
+            <Image src={runnerLogo} style={{ width: 70, height: 32, objectFit: "contain" }} />
           </View>
         </View>
       </Page>
