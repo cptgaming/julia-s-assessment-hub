@@ -51,7 +51,7 @@ const shortDate = (iso: string) => {
 const s = StyleSheet.create({
   page: {
     paddingTop: 0,
-    paddingHorizontal: 0,
+    paddingHorizontal: 18,
     paddingBottom: 10,
     fontSize: 8,
     color: C.text,
@@ -64,6 +64,8 @@ const s = StyleSheet.create({
     borderBottomWidth: 1.5,
     borderBottomColor: C.orange,
     paddingBottom: 4,
+    marginLeft: -18,
+    marginRight: -18,
     paddingRight: 18,
     marginBottom: 5,
     alignItems: "flex-start",
