@@ -317,7 +317,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         </View>
 
         {/* 2. Indicadores + 3. Evolução */}
-        <View style={{ flexDirection: "row", gap: 6, marginTop: 6 }}>
+        <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           <View style={{ flex: 1.06 }}>
             <SectionTitle n={2} title="Indicadores-chave" />
             <View style={s.table}>
@@ -367,7 +367,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         </View>
 
         {/* 4 + 5: Zonas */}
-        <View style={{ flexDirection: "row", gap: 6, marginTop: 6 }}>
+        <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           <View style={{ flex: 1.14 }}>
             <SectionTitle n={4} title="Zonas de Treinamento Personalizadas" />
             <View style={s.table}>
@@ -412,7 +412,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         </View>
 
         {/* 6 + 7 + 8 */}
-        <View style={{ flexDirection: "row", gap: 6, marginTop: 6 }}>
+        <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           {/* 6 Estilo de vida */}
           <View style={{ flex: 0.96 }}>
             <SectionTitle n={6} title="Estilo de Vida e Recuperação" />
