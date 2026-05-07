@@ -379,7 +379,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         {/* 4 + 5: Zonas */}
         <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           <View style={{ flex: 1.14 }}>
-            <SectionTitle n={4} title="Zonas de Treinamento Personalizadas" emoji="🎯" />
+            <SectionTitle n={4} title="Zonas de Treinamento Personalizadas" />
             <View style={s.table}>
               <View style={s.thead}>
                 <Text style={[s.th, { width: 70 }]}>ZONA</Text>
