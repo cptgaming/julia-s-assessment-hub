@@ -403,7 +403,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             </View>
           </View>
           <View style={{ flex: 0.86 }}>
-            <SectionTitle n={5} title="Zona principal recomendada" emoji="🏃" />
+            <SectionTitle n={5} title="Zona principal recomendada" />
             <View style={s.zoneCard}>
               <Text style={s.zoneTitle}>{d.zona_recomendada.zona}</Text>
               <Text style={{ fontSize: 7.5, marginTop: 4, lineHeight: 1.35 }}>{d.zona_recomendada.descricao}</Text>
