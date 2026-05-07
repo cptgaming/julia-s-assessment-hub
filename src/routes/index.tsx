@@ -128,29 +128,29 @@ function Dashboard() {
           </Card>
         ) : (
           <div className="grid gap-3">
-            {filtered.map((a) => (
-              <Card key={a.id} className="flex items-center justify-between p-4 transition hover:border-brand-orange">
-                <Link to="/avaliacao/$id" params={{ id: a.id }} className="flex-1">
+            {groupByAthlete(filtered).map((g) => (
+              <Card key={g.name} className="flex items-center justify-between p-4 transition hover:border-brand-orange">
+                <Link to="/atleta/$name" params={{ name: encodeURIComponent(g.name) }} className="flex-1">
                   <div className="flex items-center gap-4">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-orange-soft">
                       <User className="h-5 w-5 text-brand-orange" />
                     </div>
                     <div>
-                      <div className="font-bold text-brand-dark">{a.athlete_name}</div>
+                      <div className="font-bold text-brand-dark">{g.name}</div>
                       <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                        <span>{a.modality || "—"}</span>
+                        <span>{g.modality || "—"}</span>
+                        <span>•</span>
+                        <span>{g.count} {g.count === 1 ? "avaliação" : "avaliações"}</span>
                         <span>•</span>
                         <span className="flex items-center gap-1">
                           <Calendar className="h-3 w-3" />
-                          {fmtDate(a.assessment_date)}
+                          última {fmtDate(g.lastDate)}
                         </span>
-                        <span>•</span>
-                        <span>{a.assessment_type}</span>
                       </div>
                     </div>
                   </div>
                 </Link>
-                <Button variant="ghost" size="icon" onClick={() => handleDelete(a.id)}>
+                <Button variant="ghost" size="icon" onClick={() => handleDelete(g.lastId)}>
                   <Trash2 className="h-4 w-4 text-muted-foreground hover:text-destructive" />
                 </Button>
               </Card>
@@ -160,6 +160,25 @@ function Dashboard() {
       </main>
     </div>
   );
+}
+
+function groupByAthlete(items: Assessment[]) {
+  const map = new Map<string, { name: string; modality: string; count: number; lastDate: string; lastId: string }>();
+  for (const a of items) {
+    const key = a.athlete_name.trim().toLowerCase();
+    const existing = map.get(key);
+    if (!existing) {
+      map.set(key, { name: a.athlete_name, modality: a.modality, count: 1, lastDate: a.assessment_date, lastId: a.id });
+    } else {
+      existing.count += 1;
+      if (a.assessment_date > existing.lastDate) {
+        existing.lastDate = a.assessment_date;
+        existing.lastId = a.id;
+        existing.modality = a.modality;
+      }
+    }
+  }
+  return Array.from(map.values()).sort((a, b) => b.lastDate.localeCompare(a.lastDate));
 }
 
 function fmtDate(iso: string) {
