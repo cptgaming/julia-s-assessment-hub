@@ -336,15 +336,16 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
                 <Text style={[s.th, { flex: 1 }]}>INTERPRETAÇÃO</Text>
               </View>
               {[
-                { title: "FC DE REPOUSO", value: `${d.indicadores.fc_repouso.valor} bpm`, sub: `${d.indicadores.fc_repouso.delta > 0 ? "▲" : "▼"} ${Math.abs(d.indicadores.fc_repouso.delta)} vs última`, interp: d.indicadores.fc_repouso.interpretacao },
-                { title: "QUALIDADE DO SONO", value: d.indicadores.qualidade_sono.horas, level: d.indicadores.qualidade_sono.level, interp: d.indicadores.qualidade_sono.interpretacao },
-                { title: "NÍVEL DE ENERGIA", value: `${d.indicadores.energia.valor} / 10`, level: d.indicadores.energia.level, interp: d.indicadores.energia.interpretacao },
-                { title: "NÍVEL DE FADIGA", value: `${d.indicadores.fadiga_nivel.valor} / 10`, level: d.indicadores.fadiga_nivel.level, interp: d.indicadores.fadiga_nivel.interpretacao },
-                { title: "HIDRATAÇÃO", level: d.indicadores.hidratacao.level, interp: d.indicadores.hidratacao.interpretacao },
+                { title: "FC DE REPOUSO", emoji: "❤️", value: `${d.indicadores.fc_repouso.valor} bpm`, sub: `${d.indicadores.fc_repouso.delta > 0 ? "▲" : "▼"} ${Math.abs(d.indicadores.fc_repouso.delta)} vs última`, interp: d.indicadores.fc_repouso.interpretacao },
+                { title: "QUALIDADE DO SONO", emoji: "😴", value: d.indicadores.qualidade_sono.horas, level: d.indicadores.qualidade_sono.level, interp: d.indicadores.qualidade_sono.interpretacao },
+                { title: "NÍVEL DE ENERGIA", emoji: "⚡", value: `${d.indicadores.energia.valor} / 10`, level: d.indicadores.energia.level, interp: d.indicadores.energia.interpretacao },
+                { title: "NÍVEL DE FADIGA", emoji: "🥱", value: `${d.indicadores.fadiga_nivel.valor} / 10`, level: d.indicadores.fadiga_nivel.level, interp: d.indicadores.fadiga_nivel.interpretacao },
+                { title: "HIDRATAÇÃO", emoji: "💧", level: d.indicadores.hidratacao.level, interp: d.indicadores.hidratacao.interpretacao },
               ].map((row, i) => (
                 <View key={i} style={s.tr}>
-                  <View style={[s.td, { width: 80 }]}>
-                    <Text style={{ fontSize: 7, fontWeight: 700 }}>{row.title}</Text>
+                  <View style={[s.td, { width: 80, flexDirection: "row", alignItems: "center" }]}>
+                    <Text style={{ fontSize: 9, marginRight: 3 }}>{row.emoji}</Text>
+                    <Text style={{ fontSize: 7, fontWeight: 700, flex: 1 }}>{row.title}</Text>
                   </View>
                   <View style={[s.td, { width: 60 }]}>
                     {row.value && <Text style={{ fontSize: 7.5, fontWeight: 700 }}>{row.value}</Text>}
