@@ -229,18 +229,18 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
   const fadigaSeries = series.map((a) => ({ x: shortDate(a.assessment_date), y: a.data.indicadores.fadiga_nivel.valor }));
 
   const diagItems = [
-    { key: "estado_atual", label: "ESTADO ATUAL", value: d.diagnostico.estado_atual },
-    { key: "fadiga", label: "NÍVEL DE FADIGA", value: d.diagnostico.fadiga },
-    { key: "risco_lesao", label: "RISCO DE LESÃO", value: d.diagnostico.risco_lesao },
-    { key: "evolucao", label: "EVOLUÇÃO", value: d.diagnostico.evolucao },
+    { key: "estado_atual", label: "ESTADO ATUAL", emoji: "💪", value: d.diagnostico.estado_atual },
+    { key: "fadiga", label: "NÍVEL DE FADIGA", emoji: "🥱", value: d.diagnostico.fadiga },
+    { key: "risco_lesao", label: "RISCO DE LESÃO", emoji: "🩹", value: d.diagnostico.risco_lesao },
+    { key: "evolucao", label: "EVOLUÇÃO", emoji: "📈", value: d.diagnostico.evolucao },
   ];
 
   const estiloRows = [
-    { key: "sono", label: "SONO" },
-    { key: "estresse", label: "ESTRESSE" },
-    { key: "alimentacao", label: "ALIMENTAÇÃO" },
-    { key: "hidratacao", label: "HIDRATAÇÃO" },
-    { key: "recuperacao", label: "RECUPERAÇÃO" },
+    { key: "sono", label: "SONO", emoji: "😴" },
+    { key: "estresse", label: "ESTRESSE", emoji: "🧠" },
+    { key: "alimentacao", label: "ALIMENTAÇÃO", emoji: "🍎" },
+    { key: "hidratacao", label: "HIDRATAÇÃO", emoji: "💧" },
+    { key: "recuperacao", label: "RECUPERAÇÃO", emoji: "🛌" },
   ] as const;
 
   const zoneColors: Record<string, string> = {
