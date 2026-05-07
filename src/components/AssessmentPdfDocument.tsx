@@ -229,18 +229,18 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
   const fadigaSeries = series.map((a) => ({ x: shortDate(a.assessment_date), y: a.data.indicadores.fadiga_nivel.valor }));
 
   const diagItems = [
-    { key: "estado_atual", label: "ESTADO ATUAL", value: d.diagnostico.estado_atual },
-    { key: "fadiga", label: "NÍVEL DE FADIGA", value: d.diagnostico.fadiga },
-    { key: "risco_lesao", label: "RISCO DE LESÃO", value: d.diagnostico.risco_lesao },
-    { key: "evolucao", label: "EVOLUÇÃO", value: d.diagnostico.evolucao },
+    { key: "estado_atual", label: "ESTADO ATUAL", emoji: "💪", value: d.diagnostico.estado_atual },
+    { key: "fadiga", label: "NÍVEL DE FADIGA", emoji: "🥱", value: d.diagnostico.fadiga },
+    { key: "risco_lesao", label: "RISCO DE LESÃO", emoji: "🩹", value: d.diagnostico.risco_lesao },
+    { key: "evolucao", label: "EVOLUÇÃO", emoji: "📈", value: d.diagnostico.evolucao },
   ];
 
   const estiloRows = [
-    { key: "sono", label: "SONO" },
-    { key: "estresse", label: "ESTRESSE" },
-    { key: "alimentacao", label: "ALIMENTAÇÃO" },
-    { key: "hidratacao", label: "HIDRATAÇÃO" },
-    { key: "recuperacao", label: "RECUPERAÇÃO" },
+    { key: "sono", label: "SONO", emoji: "😴" },
+    { key: "estresse", label: "ESTRESSE", emoji: "🧠" },
+    { key: "alimentacao", label: "ALIMENTAÇÃO", emoji: "🍎" },
+    { key: "hidratacao", label: "HIDRATAÇÃO", emoji: "💧" },
+    { key: "recuperacao", label: "RECUPERAÇÃO", emoji: "🛌" },
   ] as const;
 
   const zoneColors: Record<string, string> = {
@@ -306,12 +306,13 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         </View>
 
         {/* 1. Diagnostico */}
-        <SectionTitle n={1} title="Diagnóstico Geral" emoji="📊" />
+        <SectionTitle n={1} title="Diagnóstico Geral" />
         <View style={s.diagRow}>
           {diagItems.map((c) => {
             const col = levelColor(c.value.level);
             return (
               <View key={c.key} style={s.diagCard}>
+                <Text style={{ fontSize: 12, marginBottom: 1 }}>{c.emoji}</Text>
                 <Text style={s.diagLabel}>{c.label}</Text>
                 <Text style={[s.diagValue, { color: col.fg }]}>{LEVEL_LABEL[c.value.level].toUpperCase()}</Text>
                 <Text style={s.diagDesc}>{c.value.descricao}</Text>
@@ -319,7 +320,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             );
           })}
           <View style={s.diagResume}>
-            <Text style={s.fieldLabel}>RESUMO EM UMA FRASE</Text>
+            <Text style={s.fieldLabel}>💡 RESUMO EM UMA FRASE</Text>
             <Text style={{ fontSize: 7.5, fontStyle: "italic", marginTop: 3, lineHeight: 1.35 }}>{d.diagnostico.resumo}</Text>
           </View>
         </View>
@@ -327,7 +328,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         {/* 2. Indicadores + 3. Evolução */}
         <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           <View style={{ flex: 1.06 }}>
-            <SectionTitle n={2} title="Indicadores-chave" emoji="❤️" />
+            <SectionTitle n={2} title="Indicadores-chave" />
             <View style={s.table}>
               <View style={s.thead}>
                 <Text style={[s.th, { width: 80 }]}>INDICADOR</Text>
@@ -335,15 +336,16 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
                 <Text style={[s.th, { flex: 1 }]}>INTERPRETAÇÃO</Text>
               </View>
               {[
-                { title: "FC DE REPOUSO", value: `${d.indicadores.fc_repouso.valor} bpm`, sub: `${d.indicadores.fc_repouso.delta > 0 ? "▲" : "▼"} ${Math.abs(d.indicadores.fc_repouso.delta)} vs última`, interp: d.indicadores.fc_repouso.interpretacao },
-                { title: "QUALIDADE DO SONO", value: d.indicadores.qualidade_sono.horas, level: d.indicadores.qualidade_sono.level, interp: d.indicadores.qualidade_sono.interpretacao },
-                { title: "NÍVEL DE ENERGIA", value: `${d.indicadores.energia.valor} / 10`, level: d.indicadores.energia.level, interp: d.indicadores.energia.interpretacao },
-                { title: "NÍVEL DE FADIGA", value: `${d.indicadores.fadiga_nivel.valor} / 10`, level: d.indicadores.fadiga_nivel.level, interp: d.indicadores.fadiga_nivel.interpretacao },
-                { title: "HIDRATAÇÃO", level: d.indicadores.hidratacao.level, interp: d.indicadores.hidratacao.interpretacao },
+                { title: "FC DE REPOUSO", emoji: "❤️", value: `${d.indicadores.fc_repouso.valor} bpm`, sub: `${d.indicadores.fc_repouso.delta > 0 ? "▲" : "▼"} ${Math.abs(d.indicadores.fc_repouso.delta)} vs última`, interp: d.indicadores.fc_repouso.interpretacao },
+                { title: "QUALIDADE DO SONO", emoji: "😴", value: d.indicadores.qualidade_sono.horas, level: d.indicadores.qualidade_sono.level, interp: d.indicadores.qualidade_sono.interpretacao },
+                { title: "NÍVEL DE ENERGIA", emoji: "⚡", value: `${d.indicadores.energia.valor} / 10`, level: d.indicadores.energia.level, interp: d.indicadores.energia.interpretacao },
+                { title: "NÍVEL DE FADIGA", emoji: "🥱", value: `${d.indicadores.fadiga_nivel.valor} / 10`, level: d.indicadores.fadiga_nivel.level, interp: d.indicadores.fadiga_nivel.interpretacao },
+                { title: "HIDRATAÇÃO", emoji: "💧", level: d.indicadores.hidratacao.level, interp: d.indicadores.hidratacao.interpretacao },
               ].map((row, i) => (
                 <View key={i} style={s.tr}>
-                  <View style={[s.td, { width: 80 }]}>
-                    <Text style={{ fontSize: 7, fontWeight: 700 }}>{row.title}</Text>
+                  <View style={[s.td, { width: 80, flexDirection: "row", alignItems: "center" }]}>
+                    <Text style={{ fontSize: 9, marginRight: 3 }}>{row.emoji}</Text>
+                    <Text style={{ fontSize: 7, fontWeight: 700, flex: 1 }}>{row.title}</Text>
                   </View>
                   <View style={[s.td, { width: 60 }]}>
                     {row.value && <Text style={{ fontSize: 7.5, fontWeight: 700 }}>{row.value}</Text>}
@@ -356,7 +358,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             </View>
           </View>
           <View style={{ flex: 0.94 }}>
-            <SectionTitle n={3} title="Evolução dos indicadores" emoji="📈" />
+            <SectionTitle n={3} title="Evolução dos indicadores" />
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 4 }}>
               <View style={{ width: "48.5%" }}><MiniChart title="FC DE REPOUSO" data={fcSeries} domain={[40, 70]} color={C.orange} /></View>
               <View style={{ width: "48.5%" }}><MiniChart title="QUALIDADE DO SONO" data={sonoSeries} domain={[0, 10]} color={C.estavel} /></View>
@@ -377,7 +379,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         {/* 4 + 5: Zonas */}
         <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           <View style={{ flex: 1.14 }}>
-            <SectionTitle n={4} title="Zonas de Treinamento Personalizadas" emoji="🎯" />
+            <SectionTitle n={4} title="Zonas de Treinamento Personalizadas" />
             <View style={s.table}>
               <View style={s.thead}>
                 <Text style={[s.th, { width: 70 }]}>ZONA</Text>
@@ -401,7 +403,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             </View>
           </View>
           <View style={{ flex: 0.86 }}>
-            <SectionTitle n={5} title="Zona principal recomendada" emoji="🏃" />
+            <SectionTitle n={5} title="Zona principal recomendada" />
             <View style={s.zoneCard}>
               <Text style={s.zoneTitle}>{d.zona_recomendada.zona}</Text>
               <Text style={{ fontSize: 7.5, marginTop: 4, lineHeight: 1.35 }}>{d.zona_recomendada.descricao}</Text>
@@ -423,14 +425,15 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           {/* 6 Estilo de vida */}
           <View style={{ flex: 0.96 }}>
-            <SectionTitle n={6} title="Estilo de Vida e Recuperação" emoji="🌿" />
+            <SectionTitle n={6} title="Estilo de Vida e Recuperação" />
             <View style={[s.card, { padding: 5 }]}>
               {estiloRows.map((row) => {
                 const v = (d.estilo_vida as Record<string, { level: Level; descricao: string }>)[row.key];
                 return (
                   <View key={row.key} style={{ flexDirection: "row", marginBottom: 4, alignItems: "flex-start" }}>
+                    <Text style={{ fontSize: 9, marginRight: 3, width: 12 }}>{row.emoji}</Text>
                     <Text style={{ width: 56, fontSize: 6.5, fontWeight: 700 }}>{row.label}</Text>
-                    <View style={{ width: 56 }}><LevelChip level={v.level} /></View>
+                    <View style={{ width: 52 }}><LevelChip level={v.level} /></View>
                     <Text style={{ flex: 1, fontSize: 6.5, color: C.muted, lineHeight: 1.3 }}>{v.descricao}</Text>
                   </View>
                 );
@@ -440,7 +443,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
 
           {/* 7 Alertas */}
           <View style={{ flex: 1.04 }}>
-            <SectionTitle n={7} title="Alertas e Observações" emoji="⚠️" />
+            <SectionTitle n={7} title="Alertas e Observações" />
             <View style={{ borderWidth: 1, borderColor: C.atencao, backgroundColor: C.atencaoSoft, borderRadius: 4, padding: 5, marginBottom: 4 }}>
               <Text style={{ fontSize: 7, fontWeight: 700, color: C.atencao, marginBottom: 2 }}>⚠️ ATENÇÃO</Text>
               <Text style={{ fontSize: 7, lineHeight: 1.35 }}>{d.alertas.atencao}</Text>
@@ -459,7 +462,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
 
           {/* 8 Direcionamento */}
           <View style={{ flex: 0.92 }}>
-            <SectionTitle n={8} title="Direcionamento e próximos passos" emoji="🧭" />
+            <SectionTitle n={8} title="Direcionamento e próximos passos" />
             <View style={[s.card, { marginBottom: 4 }]}>
               <Text style={{ fontSize: 6, fontWeight: 700, color: C.dark }}>FOCO PRINCIPAL</Text>
               <Text style={{ fontSize: 7, marginBottom: 3 }}>{d.direcionamento.foco_principal}</Text>
