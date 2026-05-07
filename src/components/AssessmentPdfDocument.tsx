@@ -442,11 +442,11 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
           <View style={{ flex: 1.04 }}>
             <SectionTitle n={7} title="Alertas e Observações" emoji="⚠️" />
             <View style={{ borderWidth: 1, borderColor: C.atencao, backgroundColor: C.atencaoSoft, borderRadius: 4, padding: 5, marginBottom: 4 }}>
-              <Text style={{ fontSize: 7, fontWeight: 700, color: C.atencao, marginBottom: 2 }}>⚠ ATENÇÃO</Text>
+              <Text style={{ fontSize: 7, fontWeight: 700, color: C.atencao, marginBottom: 2 }}>⚠️ ATENÇÃO</Text>
               <Text style={{ fontSize: 7, lineHeight: 1.35 }}>{d.alertas.atencao}</Text>
             </View>
             <View style={{ borderWidth: 1, borderColor: C.ideal, backgroundColor: C.idealSoft, borderRadius: 4, padding: 5, marginBottom: 4 }}>
-              <Text style={{ fontSize: 7, fontWeight: 700, color: C.ideal, marginBottom: 2 }}>✓ PONTOS POSITIVOS</Text>
+              <Text style={{ fontSize: 7, fontWeight: 700, color: C.ideal, marginBottom: 2 }}>✅ PONTOS POSITIVOS</Text>
               <Text style={{ fontSize: 7, lineHeight: 1.35 }}>{d.alertas.pontos_positivos}</Text>
             </View>
             {d.alertas.observacoes ? (
@@ -482,7 +482,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
               <Text style={{ fontSize: 12, fontWeight: 700, color: C.dark, marginTop: 2 }}>{fmtDate(d.proximos_passos.proxima_avaliacao)}</Text>
             </View>
             <View style={{ borderWidth: 1, borderColor: C.orange, backgroundColor: C.orangeSoft, borderRadius: 4, padding: 5 }}>
-              <Text style={{ fontSize: 7, fontStyle: "italic", textAlign: "center", lineHeight: 1.35 }}>★ {d.proximos_passos.mensagem}</Text>
+              <Text style={{ fontSize: 7, fontStyle: "italic", textAlign: "center", lineHeight: 1.35 }}>💪 {d.proximos_passos.mensagem}</Text>
             </View>
           </View>
         </View>
@@ -490,7 +490,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         {/* Footer */}
         <View style={s.footer}>
           <View style={{ width: 150, justifyContent: "center" }}>
-            <Text style={{ fontSize: 6, fontWeight: 700, color: C.dark, letterSpacing: 0.4 }}>★ IMPORTANTE</Text>
+            <Text style={{ fontSize: 6, fontWeight: 700, color: C.dark, letterSpacing: 0.4 }}>⭐ IMPORTANTE</Text>
             <Text style={{ fontSize: 6, color: C.muted, lineHeight: 1.3, marginTop: 1 }}>
               Este relatório não substitui diagnóstico médico. Em caso de dúvidas ou sintomas, procure um profissional de saúde.
             </Text>
