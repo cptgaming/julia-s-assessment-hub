@@ -306,7 +306,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         </View>
 
         {/* 1. Diagnostico */}
-        <SectionTitle n={1} title="Diagnóstico Geral" />
+        <SectionTitle n={1} title="Diagnóstico Geral" emoji="📊" />
         <View style={s.diagRow}>
           {diagItems.map((c) => {
             const col = levelColor(c.value.level);
@@ -327,7 +327,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         {/* 2. Indicadores + 3. Evolução */}
         <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           <View style={{ flex: 1.06 }}>
-            <SectionTitle n={2} title="Indicadores-chave" />
+            <SectionTitle n={2} title="Indicadores-chave" emoji="❤️" />
             <View style={s.table}>
               <View style={s.thead}>
                 <Text style={[s.th, { width: 80 }]}>INDICADOR</Text>
@@ -356,7 +356,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             </View>
           </View>
           <View style={{ flex: 0.94 }}>
-            <SectionTitle n={3} title="Evolução dos indicadores" />
+            <SectionTitle n={3} title="Evolução dos indicadores" emoji="📈" />
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 4 }}>
               <View style={{ width: "48.5%" }}><MiniChart title="FC DE REPOUSO" data={fcSeries} domain={[40, 70]} color={C.orange} /></View>
               <View style={{ width: "48.5%" }}><MiniChart title="QUALIDADE DO SONO" data={sonoSeries} domain={[0, 10]} color={C.estavel} /></View>
@@ -377,7 +377,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         {/* 4 + 5: Zonas */}
         <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           <View style={{ flex: 1.14 }}>
-            <SectionTitle n={4} title="Zonas de Treinamento Personalizadas" />
+            <SectionTitle n={4} title="Zonas de Treinamento Personalizadas" emoji="🎯" />
             <View style={s.table}>
               <View style={s.thead}>
                 <Text style={[s.th, { width: 70 }]}>ZONA</Text>
@@ -401,7 +401,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             </View>
           </View>
           <View style={{ flex: 0.86 }}>
-            <SectionTitle n={5} title="Zona principal recomendada" />
+            <SectionTitle n={5} title="Zona principal recomendada" emoji="🏃" />
             <View style={s.zoneCard}>
               <Text style={s.zoneTitle}>{d.zona_recomendada.zona}</Text>
               <Text style={{ fontSize: 7.5, marginTop: 4, lineHeight: 1.35 }}>{d.zona_recomendada.descricao}</Text>
@@ -423,7 +423,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           {/* 6 Estilo de vida */}
           <View style={{ flex: 0.96 }}>
-            <SectionTitle n={6} title="Estilo de Vida e Recuperação" />
+            <SectionTitle n={6} title="Estilo de Vida e Recuperação" emoji="🌿" />
             <View style={[s.card, { padding: 5 }]}>
               {estiloRows.map((row) => {
                 const v = (d.estilo_vida as Record<string, { level: Level; descricao: string }>)[row.key];
@@ -440,7 +440,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
 
           {/* 7 Alertas */}
           <View style={{ flex: 1.04 }}>
-            <SectionTitle n={7} title="Alertas e Observações" />
+            <SectionTitle n={7} title="Alertas e Observações" emoji="⚠️" />
             <View style={{ borderWidth: 1, borderColor: C.atencao, backgroundColor: C.atencaoSoft, borderRadius: 4, padding: 5, marginBottom: 4 }}>
               <Text style={{ fontSize: 7, fontWeight: 700, color: C.atencao, marginBottom: 2 }}>⚠ ATENÇÃO</Text>
               <Text style={{ fontSize: 7, lineHeight: 1.35 }}>{d.alertas.atencao}</Text>
@@ -459,7 +459,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
 
           {/* 8 Direcionamento */}
           <View style={{ flex: 0.92 }}>
-            <SectionTitle n={8} title="Direcionamento e próximos passos" />
+            <SectionTitle n={8} title="Direcionamento e próximos passos" emoji="🧭" />
             <View style={[s.card, { marginBottom: 4 }]}>
               <Text style={{ fontSize: 6, fontWeight: 700, color: C.dark }}>FOCO PRINCIPAL</Text>
               <Text style={{ fontSize: 7, marginBottom: 3 }}>{d.direcionamento.foco_principal}</Text>
