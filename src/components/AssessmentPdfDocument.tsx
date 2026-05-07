@@ -328,7 +328,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         {/* 2. Indicadores + 3. Evolução */}
         <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           <View style={{ flex: 1.06 }}>
-            <SectionTitle n={2} title="Indicadores-chave" emoji="❤️" />
+            <SectionTitle n={2} title="Indicadores-chave" />
             <View style={s.table}>
               <View style={s.thead}>
                 <Text style={[s.th, { width: 80 }]}>INDICADOR</Text>
