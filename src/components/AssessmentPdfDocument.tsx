@@ -167,11 +167,13 @@ const s = StyleSheet.create({
   },
 });
 
-function SectionTitle({ n, title }: { n: number; title: string }) {
+function SectionTitle({ n, title, emoji }: { n: number; title: string; emoji?: string }) {
   return (
     <View style={s.sectionTitle}>
       <Text style={s.sectionN}>{n}</Text>
-      <Text style={s.sectionTitleText}>{title.toUpperCase()}</Text>
+      <Text style={s.sectionTitleText}>
+        {emoji ? `${emoji}  ` : ""}{title.toUpperCase()}
+      </Text>
       <View style={s.sectionRule} />
     </View>
   );
