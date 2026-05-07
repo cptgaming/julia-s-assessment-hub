@@ -358,7 +358,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             </View>
           </View>
           <View style={{ flex: 0.94 }}>
-            <SectionTitle n={3} title="Evolução dos indicadores" emoji="📈" />
+            <SectionTitle n={3} title="Evolução dos indicadores" />
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 4 }}>
               <View style={{ width: "48.5%" }}><MiniChart title="FC DE REPOUSO" data={fcSeries} domain={[40, 70]} color={C.orange} /></View>
               <View style={{ width: "48.5%" }}><MiniChart title="QUALIDADE DO SONO" data={sonoSeries} domain={[0, 10]} color={C.estavel} /></View>
