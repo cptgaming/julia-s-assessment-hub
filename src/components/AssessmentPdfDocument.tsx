@@ -443,7 +443,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
 
           {/* 7 Alertas */}
           <View style={{ flex: 1.04 }}>
-            <SectionTitle n={7} title="Alertas e Observações" emoji="⚠️" />
+            <SectionTitle n={7} title="Alertas e Observações" />
             <View style={{ borderWidth: 1, borderColor: C.atencao, backgroundColor: C.atencaoSoft, borderRadius: 4, padding: 5, marginBottom: 4 }}>
               <Text style={{ fontSize: 7, fontWeight: 700, color: C.atencao, marginBottom: 2 }}>⚠️ ATENÇÃO</Text>
               <Text style={{ fontSize: 7, lineHeight: 1.35 }}>{d.alertas.atencao}</Text>
