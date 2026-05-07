@@ -1,9 +1,15 @@
-import { Document, Page, Text, View, Image, StyleSheet, Svg, Polyline, Line as SvgLine, Circle } from "@react-pdf/renderer";
+import { Document, Page, Text, View, Image, StyleSheet, Svg, Polyline, Line as SvgLine, Circle, Font } from "@react-pdf/renderer";
 import bpsLogo from "@/assets/logo-bps.jpeg";
 import juliaLogo from "@/assets/logo-julia.jpeg";
 import runnerLogo from "@/assets/logo-runner.jpeg";
 import type { Assessment, Level } from "@/lib/assessment-types";
 import { LEVEL_LABEL, ZONAS } from "@/lib/assessment-types";
+
+// Emoji support via Twemoji (renders emoji as inline images in the PDF).
+Font.registerEmojiSource({
+  format: "png",
+  url: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/",
+});
 
 // === Colors ===
 const C = {
