@@ -306,12 +306,13 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         </View>
 
         {/* 1. Diagnostico */}
-        <SectionTitle n={1} title="Diagnóstico Geral" emoji="📊" />
+        <SectionTitle n={1} title="Diagnóstico Geral" />
         <View style={s.diagRow}>
           {diagItems.map((c) => {
             const col = levelColor(c.value.level);
             return (
               <View key={c.key} style={s.diagCard}>
+                <Text style={{ fontSize: 12, marginBottom: 1 }}>{c.emoji}</Text>
                 <Text style={s.diagLabel}>{c.label}</Text>
                 <Text style={[s.diagValue, { color: col.fg }]}>{LEVEL_LABEL[c.value.level].toUpperCase()}</Text>
                 <Text style={s.diagDesc}>{c.value.descricao}</Text>
@@ -319,7 +320,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             );
           })}
           <View style={s.diagResume}>
-            <Text style={s.fieldLabel}>RESUMO EM UMA FRASE</Text>
+            <Text style={s.fieldLabel}>💡 RESUMO EM UMA FRASE</Text>
             <Text style={{ fontSize: 7.5, fontStyle: "italic", marginTop: 3, lineHeight: 1.35 }}>{d.diagnostico.resumo}</Text>
           </View>
         </View>
