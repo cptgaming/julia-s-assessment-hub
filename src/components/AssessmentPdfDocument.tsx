@@ -462,7 +462,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
 
           {/* 8 Direcionamento */}
           <View style={{ flex: 0.92 }}>
-            <SectionTitle n={8} title="Direcionamento e próximos passos" emoji="🧭" />
+            <SectionTitle n={8} title="Direcionamento e próximos passos" />
             <View style={[s.card, { marginBottom: 4 }]}>
               <Text style={{ fontSize: 6, fontWeight: 700, color: C.dark }}>FOCO PRINCIPAL</Text>
               <Text style={{ fontSize: 7, marginBottom: 3 }}>{d.direcionamento.foco_principal}</Text>
