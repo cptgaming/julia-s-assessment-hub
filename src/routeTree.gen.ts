@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AvaliacaoIdRouteImport } from './routes/avaliacao.$id'
+import { Route as AtletaNameRouteImport } from './routes/atleta.$name'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -28,34 +29,43 @@ const AvaliacaoIdRoute = AvaliacaoIdRouteImport.update({
   path: '/avaliacao/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtletaNameRoute = AtletaNameRouteImport.update({
+  id: '/atleta/$name',
+  path: '/atleta/$name',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/atleta/$name': typeof AtletaNameRoute
   '/avaliacao/$id': typeof AvaliacaoIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/atleta/$name': typeof AtletaNameRoute
   '/avaliacao/$id': typeof AvaliacaoIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/atleta/$name': typeof AtletaNameRoute
   '/avaliacao/$id': typeof AvaliacaoIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/avaliacao/$id'
+  fullPaths: '/' | '/login' | '/atleta/$name' | '/avaliacao/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/avaliacao/$id'
-  id: '__root__' | '/' | '/login' | '/avaliacao/$id'
+  to: '/' | '/login' | '/atleta/$name' | '/avaliacao/$id'
+  id: '__root__' | '/' | '/login' | '/atleta/$name' | '/avaliacao/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
+  AtletaNameRoute: typeof AtletaNameRoute
   AvaliacaoIdRoute: typeof AvaliacaoIdRoute
 }
 
@@ -82,12 +92,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AvaliacaoIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atleta/$name': {
+      id: '/atleta/$name'
+      path: '/atleta/$name'
+      fullPath: '/atleta/$name'
+      preLoaderRoute: typeof AtletaNameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
+  AtletaNameRoute: AtletaNameRoute,
   AvaliacaoIdRoute: AvaliacaoIdRoute,
 }
 export const routeTree = rootRouteImport
