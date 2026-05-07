@@ -425,14 +425,15 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           {/* 6 Estilo de vida */}
           <View style={{ flex: 0.96 }}>
-            <SectionTitle n={6} title="Estilo de Vida e Recuperação" emoji="🌿" />
+            <SectionTitle n={6} title="Estilo de Vida e Recuperação" />
             <View style={[s.card, { padding: 5 }]}>
               {estiloRows.map((row) => {
                 const v = (d.estilo_vida as Record<string, { level: Level; descricao: string }>)[row.key];
                 return (
                   <View key={row.key} style={{ flexDirection: "row", marginBottom: 4, alignItems: "flex-start" }}>
+                    <Text style={{ fontSize: 9, marginRight: 3, width: 12 }}>{row.emoji}</Text>
                     <Text style={{ width: 56, fontSize: 6.5, fontWeight: 700 }}>{row.label}</Text>
-                    <View style={{ width: 56 }}><LevelChip level={v.level} /></View>
+                    <View style={{ width: 52 }}><LevelChip level={v.level} /></View>
                     <Text style={{ flex: 1, fontSize: 6.5, color: C.muted, lineHeight: 1.3 }}>{v.descricao}</Text>
                   </View>
                 );
