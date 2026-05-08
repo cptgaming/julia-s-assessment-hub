@@ -740,14 +740,14 @@ export function AssessmentReport({
               )}
             </div>
 
-            <div className="rounded-md border border-brand-orange/35 bg-brand-orange-soft p-2 text-center">
-              <Star className="mx-auto mb-1 h-4 w-4 text-brand-orange" />
+            <div className="overflow-hidden rounded-md border border-brand-orange/35 bg-brand-orange-soft px-2 py-1.5 text-center">
+              <Star className="mx-auto mb-0.5 h-3.5 w-3.5 text-brand-orange" />
               <EditableText
                 value={d.proximos_passos.mensagem}
                 editable={editable}
                 multiline
                 onChange={(v) => setData({ proximos_passos: { ...d.proximos_passos, mensagem: v } })}
-                className="text-[10px] italic leading-[1.35]"
+                className="line-clamp-2 text-[9px] italic leading-[1.25]"
               />
             </div>
           </div>
