@@ -613,21 +613,23 @@ export function AssessmentReport({
               const cls = levelClasses(v.level);
 
               return (
-                <div key={row.key} className="grid grid-cols-[82px_88px_1fr] gap-1.5 text-[8.5px] leading-tight">
-                  <div className="flex items-center gap-1">
-                    <Icon className={cn("h-3.5 w-3.5", cls.text)} />
-                    <span className="font-semibold">{row.label}</span>
+                <div key={row.key} className="space-y-1 text-[8.5px] leading-tight">
+                  <div className="flex items-center justify-between gap-1.5">
+                    <div className="flex items-center gap-1">
+                      <Icon className={cn("h-3.5 w-3.5", cls.text)} />
+                      <span className="font-semibold">{row.label}</span>
+                    </div>
+                    <LevelInline
+                      level={v.level}
+                      editable={editable}
+                      onChange={(level) =>
+                        setData({
+                          estilo_vida: { ...d.estilo_vida, [row.key]: { ...v, level } } as typeof d.estilo_vida,
+                        })
+                      }
+                      showLabel
+                    />
                   </div>
-                  <LevelInline
-                    level={v.level}
-                    editable={editable}
-                    onChange={(level) =>
-                      setData({
-                        estilo_vida: { ...d.estilo_vida, [row.key]: { ...v, level } } as typeof d.estilo_vida,
-                      })
-                    }
-                    showLabel
-                  />
                   <EditableText
                     value={v.descricao}
                     editable={editable}
@@ -637,7 +639,7 @@ export function AssessmentReport({
                         estilo_vida: { ...d.estilo_vida, [row.key]: { ...v, descricao: text } } as typeof d.estilo_vida,
                       })
                     }
-                    className="text-[8.5px] text-muted-foreground"
+                    className="block w-full text-[8.5px] text-muted-foreground"
                   />
                 </div>
               );
