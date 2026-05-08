@@ -678,7 +678,7 @@ export function AssessmentReport({
                 />
               }
             />
-            <div className="rounded-md border border-border bg-card p-2">
+            <div className="flex min-h-0 flex-col overflow-hidden rounded-md border border-border bg-card p-2">
               <div className="mb-1 text-[9px] font-bold uppercase tracking-[0.08em] text-brand-dark">Observações</div>
               <EditableText
                 value={d.alertas.observacoes}
@@ -686,7 +686,7 @@ export function AssessmentReport({
                 multiline
                 onChange={(v) => setData({ alertas: { ...d.alertas, observacoes: v } })}
                 placeholder="—"
-                className="min-h-[82px] text-[9px] leading-[1.35] text-foreground"
+                className="min-h-0 flex-1 overflow-hidden text-[9px] leading-[1.35] text-foreground"
               />
             </div>
           </div>
