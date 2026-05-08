@@ -694,7 +694,7 @@ export function AssessmentReport({
 
         <div>
           <SectionTitle n={8} title="Direcionamento e próximos passos" />
-          <div className="grid h-full grid-rows-[auto_auto_auto_1fr] gap-2">
+          <div className="grid content-start gap-2">
             <div className="rounded-md border border-border bg-card p-2 text-[9px]">
               <Row icon={Target} label="FOCO PRINCIPAL" value={d.direcionamento.foco_principal} editable={editable} onChange={(v) => setData({ direcionamento: { ...d.direcionamento, foco_principal: v } })} compact />
               <Row icon={BarChart3} label="ESTRATÉGIA" value={d.direcionamento.estrategia} editable={editable} onChange={(v) => setData({ direcionamento: { ...d.direcionamento, estrategia: v } })} compact />
