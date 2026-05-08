@@ -197,7 +197,7 @@ function MiniChart({ title, data, domain, color }: { title: string; data: { x: s
   return (
     <View style={[s.card, { padding: 4, height: 72 }]}>
       <Text style={{ fontSize: 6.5, fontWeight: 700, color: C.dark, marginBottom: 2 }}>{title}</Text>
-      <Svg width={W} height={H}>
+      <Svg width="100%" height={H} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
         <SvgLine x1={padX} y1={H - padY} x2={W - padX} y2={H - padY} stroke={C.border} strokeWidth={0.5} />
         {data.length > 1 && <Polyline points={points} stroke={color} strokeWidth={1.4} fill="none" />}
         {data.map((d, i) => (
