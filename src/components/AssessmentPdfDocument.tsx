@@ -162,7 +162,7 @@ const s = StyleSheet.create({
   footer: {
     flexDirection: "row",
     borderTopWidth: 1.5, borderTopColor: C.orange,
-    paddingTop: 4, marginTop: "auto",
+    paddingTop: 3, marginTop: "auto",
     alignItems: "center",
   },
 });
@@ -378,7 +378,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         {/* 4 + 5: Zonas */}
         <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           <View style={{ flex: 1.14 }}>
-            <SectionTitle n={4} title="Zonas de Treinamento Personalizadas" />
+            <SectionTitle n={4} title="Zonas de Treinamento" />
             <View style={s.table}>
               <View style={s.thead}>
                 <Text style={[s.th, { width: 70 }]}>ZONA</Text>
@@ -424,7 +424,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         <View style={{ flexDirection: "row", gap: 5, marginTop: 4 }}>
           {/* 6 Estilo de vida */}
           <View style={{ flex: 0.96 }}>
-            <SectionTitle n={6} title="Estilo de Vida e Recuperação" />
+            <SectionTitle n={6} title="Estilo de Vida" />
             <View style={[s.card, { padding: 5 }]}>
               {estiloRows.map((row) => {
                 const v = (d.estilo_vida as Record<string, { level: Level; descricao: string }>)[row.key];
@@ -473,9 +473,9 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             <View style={[s.card, { marginBottom: 4 }]}>
               <Text style={{ fontSize: 6.5, fontWeight: 700, color: C.dark, marginBottom: 2 }}>RECOMENDAÇÕES PRÁTICAS</Text>
               {d.recomendacoes.map((r, i) => (
-                <View key={i} style={{ flexDirection: "row", marginBottom: 2.5, alignItems: "center" }}>
-                  <View style={{ width: 8, height: 8, borderWidth: 0.8, borderColor: C.ideal, borderRadius: 1.5, marginRight: 4, alignItems: "center", justifyContent: "center" }}>
-                    <Text style={{ color: C.ideal, fontSize: 5, fontWeight: 700 }}>v</Text>
+                <View key={i} style={{ flexDirection: "row", marginBottom: 2, alignItems: "flex-start" }}>
+                  <View style={{ width: 8, height: 8, borderWidth: 0.8, borderColor: C.ideal, borderRadius: 1.5, marginRight: 4, marginTop: 1, alignItems: "center", justifyContent: "center" }}>
+                    <Text style={{ color: C.ideal, fontSize: 4.5, fontWeight: 700 }}>v</Text>
                   </View>
                   <Text style={{ flex: 1, fontSize: 6.8, lineHeight: 1.2 }}>{r}</Text>
                 </View>
