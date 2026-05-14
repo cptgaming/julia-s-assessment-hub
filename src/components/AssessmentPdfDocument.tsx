@@ -448,7 +448,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
               <Text style={{ fontSize: 7, lineHeight: 1.35 }}>{d.alertas.atencao}</Text>
             </View>
             <View style={{ borderWidth: 1, borderColor: C.ideal, backgroundColor: C.idealSoft, borderRadius: 4, padding: 5, marginBottom: 4 }}>
-              <Text style={{ fontSize: 7, fontWeight: 700, color: C.ideal, marginBottom: 2 }}>✅ PONTOS POSITIVOS</Text>
+              <Text style={{ fontSize: 7, fontWeight: 700, color: C.ideal, marginBottom: 2 }}>PONTOS POSITIVOS</Text>
               <Text style={{ fontSize: 7, lineHeight: 1.35 }}>{d.alertas.pontos_positivos}</Text>
             </View>
             {d.alertas.observacoes ? (
@@ -473,9 +473,11 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             <View style={[s.card, { marginBottom: 4 }]}>
               <Text style={{ fontSize: 6.5, fontWeight: 700, color: C.dark, marginBottom: 2 }}>RECOMENDAÇÕES PRÁTICAS</Text>
               {d.recomendacoes.map((r, i) => (
-                <View key={i} style={{ flexDirection: "row", marginBottom: 1.5 }}>
-                  <Text style={{ color: C.ideal, marginRight: 3, fontSize: 7 }}>✓</Text>
-                  <Text style={{ flex: 1, fontSize: 6.8, lineHeight: 1.3 }}>{r}</Text>
+                <View key={i} style={{ flexDirection: "row", marginBottom: 2.5, alignItems: "center" }}>
+                  <View style={{ width: 8, height: 8, borderWidth: 0.8, borderColor: C.ideal, borderRadius: 1.5, marginRight: 4, alignItems: "center", justifyContent: "center" }}>
+                    <Text style={{ color: C.ideal, fontSize: 5, fontWeight: 700 }}>v</Text>
+                  </View>
+                  <Text style={{ flex: 1, fontSize: 6.8, lineHeight: 1.2 }}>{r}</Text>
                 </View>
               ))}
             </View>
@@ -484,7 +486,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
               <Text style={{ fontSize: 12, fontWeight: 700, color: C.dark, marginTop: 2 }}>{fmtDate(d.proximos_passos.proxima_avaliacao)}</Text>
             </View>
             <View style={{ borderWidth: 1, borderColor: C.orange, backgroundColor: C.orangeSoft, borderRadius: 4, padding: 5 }}>
-              <Text style={{ fontSize: 7, fontStyle: "italic", textAlign: "center", lineHeight: 1.35 }}>💪 {d.proximos_passos.mensagem}</Text>
+              <Text style={{ fontSize: 7, fontStyle: "italic", textAlign: "center", lineHeight: 1.35 }}>{d.proximos_passos.mensagem}</Text>
             </View>
           </View>
         </View>
@@ -492,7 +494,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         {/* Footer */}
         <View style={s.footer}>
           <View style={{ width: 150, justifyContent: "center" }}>
-            <Text style={{ fontSize: 6, fontWeight: 700, color: C.dark, letterSpacing: 0.4 }}>⭐ IMPORTANTE</Text>
+            <Text style={{ fontSize: 6, fontWeight: 700, color: C.dark, letterSpacing: 0.4 }}>IMPORTANTE</Text>
             <Text style={{ fontSize: 6, color: C.muted, lineHeight: 1.3, marginTop: 1 }}>
               Este relatório não substitui diagnóstico médico. Em caso de dúvidas ou sintomas, procure um profissional de saúde.
             </Text>
