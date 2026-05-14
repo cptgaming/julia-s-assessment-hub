@@ -311,7 +311,7 @@ export function AssessmentReport({
                 <tr>
                   <th className="w-[128px] px-2 py-1.5 text-left font-bold">INDICADOR</th>
                   <th className="w-[88px] px-2 py-1.5 text-left font-bold">VALOR</th>
-                  <th className="px-2 py-1.5 text-left font-bold">INTERPRETAÇÃO</th>
+                  <th className="px-2 py-1.5 text-left font-bold">COMENTÁRIO</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
