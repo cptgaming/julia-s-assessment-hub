@@ -236,11 +236,11 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
   ];
 
   const estiloRows = [
-    { key: "sono", label: "SONO", emoji: "😴" },
-    { key: "estresse", label: "ESTRESSE", emoji: "🧠" },
-    { key: "alimentacao", label: "ALIMENTAÇÃO", emoji: "🍎" },
-    { key: "hidratacao", label: "HIDRATAÇÃO", emoji: "💧" },
-    { key: "recuperacao", label: "RECUPERAÇÃO", emoji: "🛌" },
+    { key: "sono", label: "SONO" },
+    { key: "estresse", label: "ESTRESSE" },
+    { key: "alimentacao", label: "ALIMENTAÇÃO" },
+    { key: "hidratacao", label: "HIDRATAÇÃO" },
+    { key: "recuperacao", label: "RECUPERAÇÃO" },
   ] as const;
 
   const zoneColors: Record<string, string> = {
