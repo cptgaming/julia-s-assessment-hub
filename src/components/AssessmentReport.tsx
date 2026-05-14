@@ -537,7 +537,7 @@ export function AssessmentReport({
                         </div>
                       </td>
                       <td className="px-1.5 py-1.5">{z.pct}</td>
-                      <td className="px-1.5 py-1.5">{z.faixa}</td>
+                      <td className="px-1.5 py-1.5">{z.faixa} bpm</td>
                       <td className="px-1.5 py-1.5">{z.percep}</td>
                       <td className="px-1.5 py-1.5 text-muted-foreground">{z.foco}</td>
                     </tr>
