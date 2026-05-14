@@ -320,7 +320,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             );
           })}
           <View style={s.diagResume}>
-            <Text style={s.fieldLabel}>💡 RESUMO EM UMA FRASE</Text>
+            <Text style={s.fieldLabel}>RESUMO EM UMA FRASE</Text>
             <Text style={{ fontSize: 7.5, fontStyle: "italic", marginTop: 3, lineHeight: 1.35 }}>{d.diagnostico.resumo}</Text>
           </View>
         </View>
