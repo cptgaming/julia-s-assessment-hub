@@ -256,8 +256,9 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             <Image src={bpsLogo} style={s.logo} />
           </View>
           <View style={s.titleBox}>
-            <Text style={s.titleSmall}>RELATÓRIO DE</Text>
-            <Text style={s.titleBig}>AVALIAÇÃO</Text>
+            <Text style={{ fontSize: 22, fontWeight: 700, color: C.dark, letterSpacing: 0.4 }}>
+              RELATÓRIO DE <Text style={{ color: C.orange }}>AVALIAÇÃO</Text>
+            </Text>
             <View style={s.titleRule} />
             <View style={s.athleteCard}>
               <View style={s.athleteField}>
@@ -299,7 +300,6 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
                 <Text style={s.fieldLabel}>AVALIADO POR</Text>
                 <Text style={s.fieldValue}>{assessment.evaluator_name}</Text>
                 <Text style={{ fontSize: 7, color: C.muted }}>{assessment.evaluator_role}</Text>
-                <Text style={{ fontSize: 7, color: C.muted }}>{assessment.evaluator_cref}</Text>
               </View>
             </View>
           </View>
@@ -336,7 +336,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
                 <Text style={[s.th, { flex: 1 }]}>INTERPRETAÇÃO</Text>
               </View>
               {[
-                { title: "FC DE REPOUSO", emoji: "❤️", value: `${d.indicadores.fc_repouso.valor} bpm`, sub: `${d.indicadores.fc_repouso.delta > 0 ? "▲" : "▼"} ${Math.abs(d.indicadores.fc_repouso.delta)} vs última`, interp: d.indicadores.fc_repouso.interpretacao },
+                { title: "FC DE REPOUSO", emoji: "❤️", value: `${d.indicadores.fc_repouso.valor} bpm`, sub: `${d.indicadores.fc_repouso.delta > 0 ? "+" : ""}${d.indicadores.fc_repouso.delta} vs última`, interp: d.indicadores.fc_repouso.interpretacao },
                 { title: "QUALIDADE DO SONO", emoji: "😴", value: d.indicadores.qualidade_sono.horas, level: d.indicadores.qualidade_sono.level, interp: d.indicadores.qualidade_sono.interpretacao },
                 { title: "NÍVEL DE ENERGIA", emoji: "⚡", value: `${d.indicadores.energia.valor} / 10`, level: d.indicadores.energia.level, interp: d.indicadores.energia.interpretacao },
                 { title: "NÍVEL DE FADIGA", emoji: "🥱", value: `${d.indicadores.fadiga_nivel.valor} / 10`, level: d.indicadores.fadiga_nivel.level, interp: d.indicadores.fadiga_nivel.interpretacao },
@@ -395,7 +395,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
                     <Text style={{ fontSize: 6.5, fontWeight: 700 }}>{z.nome}</Text>
                   </View>
                   <Text style={[s.td, { width: 50, fontSize: 6.5 }]}>{z.pct}</Text>
-                  <Text style={[s.td, { width: 50, fontSize: 6.5 }]}>{z.faixa}</Text>
+                  <Text style={[s.td, { width: 50, fontSize: 6.5 }]}>{z.faixa} bpm</Text>
                   <Text style={[s.td, { width: 55, fontSize: 6.5 }]}>{z.percep}</Text>
                   <Text style={[s.td, { flex: 1, fontSize: 6.5, color: C.muted }]}>{z.foco}</Text>
                 </View>
