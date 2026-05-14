@@ -229,10 +229,10 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
   const fadigaSeries = series.map((a) => ({ x: shortDate(a.assessment_date), y: a.data.indicadores.fadiga_nivel.valor }));
 
   const diagItems = [
-    { key: "estado_atual", label: "ESTADO ATUAL", emoji: "💪", value: d.diagnostico.estado_atual },
-    { key: "fadiga", label: "NÍVEL DE FADIGA", emoji: "🥱", value: d.diagnostico.fadiga },
-    { key: "risco_lesao", label: "RISCO DE LESÃO", emoji: "🩹", value: d.diagnostico.risco_lesao },
-    { key: "evolucao", label: "EVOLUÇÃO", emoji: "📈", value: d.diagnostico.evolucao },
+    { key: "estado_atual", label: "ESTADO ATUAL", value: d.diagnostico.estado_atual },
+    { key: "fadiga", label: "NÍVEL DE FADIGA", value: d.diagnostico.fadiga },
+    { key: "risco_lesao", label: "RISCO DE LESÃO", value: d.diagnostico.risco_lesao },
+    { key: "evolucao", label: "EVOLUÇÃO", value: d.diagnostico.evolucao },
   ];
 
   const estiloRows = [
@@ -312,7 +312,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             const col = levelColor(c.value.level);
             return (
               <View key={c.key} style={s.diagCard}>
-                <Text style={{ fontSize: 12, marginBottom: 1 }}>{c.emoji}</Text>
+                <View style={{ height: 4 }} />
                 <Text style={s.diagLabel}>{c.label}</Text>
                 <Text style={[s.diagValue, { color: col.fg }]}>{LEVEL_LABEL[c.value.level].toUpperCase()}</Text>
                 <Text style={s.diagDesc}>{c.value.descricao}</Text>
@@ -333,7 +333,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
               <View style={s.thead}>
                 <Text style={[s.th, { width: 80 }]}>INDICADOR</Text>
                 <Text style={[s.th, { width: 60 }]}>VALOR</Text>
-                <Text style={[s.th, { flex: 1 }]}>INTERPRETAÇÃO</Text>
+                <Text style={[s.th, { flex: 1 }]}>COMENTÁRIO</Text>
               </View>
               {[
                 { title: "FC DE REPOUSO", value: `${d.indicadores.fc_repouso.valor} bpm`, sub: `${d.indicadores.fc_repouso.delta > 0 ? "+" : ""}${d.indicadores.fc_repouso.delta} vs última`, interp: d.indicadores.fc_repouso.interpretacao },
