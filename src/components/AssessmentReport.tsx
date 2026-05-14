@@ -168,10 +168,11 @@ export function AssessmentReport({
         </div>
 
         <div className="space-y-2 text-center">
-          <div>
-            <div className="text-[25px] font-extrabold leading-none tracking-[0.02em] text-brand-dark">RELATÓRIO DE</div>
-            <div className="mt-0.5 text-[32px] font-extrabold leading-none tracking-[0.02em] text-brand-orange">AVALIAÇÃO</div>
-            <div className="mx-auto mt-2 h-1 w-28 rounded bg-brand-orange/70" />
+          <div className="flex flex-col items-center">
+            <h1 className="text-[28px] font-extrabold leading-tight tracking-[0.02em] text-brand-dark">
+              RELATÓRIO DE <span className="text-brand-orange">AVALIAÇÃO</span>
+            </h1>
+            <div className="mt-1.5 h-1 w-28 rounded bg-brand-orange/70" />
           </div>
 
           <div className="grid grid-cols-2 gap-x-4 gap-y-1 rounded-md border border-border bg-card px-3 py-2 text-left text-[10px] leading-tight">
@@ -235,7 +236,6 @@ export function AssessmentReport({
           <MetaRow icon={User} label="AVALIADO POR">
             <div className="font-semibold">{assessment.evaluator_name}</div>
             <div className="text-muted-foreground">{assessment.evaluator_role}</div>
-            <div className="text-muted-foreground">{assessment.evaluator_cref}</div>
           </MetaRow>
         </div>
       </header>
@@ -343,7 +343,7 @@ export function AssessmentReport({
                       <>
                         <div>{d.indicadores.fc_repouso.valor} bpm</div>
                         <div className="text-[8px] text-muted-foreground">
-                          {d.indicadores.fc_repouso.delta > 0 ? "▲" : "▼"} {Math.abs(d.indicadores.fc_repouso.delta)} vs última
+                          {d.indicadores.fc_repouso.delta > 0 ? "+" : ""} {d.indicadores.fc_repouso.delta} vs última
                         </div>
                       </>
                     )
