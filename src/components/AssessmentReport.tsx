@@ -496,12 +496,6 @@ export function AssessmentReport({
             <MiniChart title="NÍVEL DE ENERGIA" data={energiaSeries} color="oklch(0.65 0.18 145)" domain={[0, 10]} icon={Zap} />
             <MiniChart title="NÍVEL DE FADIGA" data={fadigaSeries} color="oklch(0.6 0.22 25)" domain={[0, 10]} icon={Flame} />
           </div>
-          <div className="mt-2 rounded-md border border-[var(--level-ideal)]/40 bg-[var(--level-ideal-soft)] px-2.5 py-2 text-[9px] leading-[1.35]">
-            <span className="font-bold text-brand-dark">Análise:</span>{" "}
-            {history.length >= 2
-              ? "Tendência de melhora nos indicadores centrais, com melhor recuperação e estabilidade da carga interna."
-              : "Aguardando novas avaliações para consolidar a leitura evolutiva dos indicadores."}
-          </div>
         </div>
       </section>
 
@@ -649,7 +643,7 @@ export function AssessmentReport({
 
         <div>
           <SectionTitle n={7} title="Alertas e Observações" />
-          <div className="grid h-full grid-rows-[auto_auto_1fr] gap-2">
+          <div className="grid h-full grid-rows-[auto_auto_auto_auto] gap-2">
             <AlertCard
               icon={AlertTriangle}
               title="Atenção"
@@ -678,7 +672,7 @@ export function AssessmentReport({
                 />
               }
             />
-            <div className="flex min-h-0 flex-col overflow-hidden rounded-md border border-border bg-card p-2">
+            <div className="flex h-[45px] flex-col overflow-hidden rounded-md border border-border bg-card p-2">
               <div className="mb-1 text-[9px] font-bold uppercase tracking-[0.08em] text-brand-dark">Observações</div>
               <EditableText
                 value={d.alertas.observacoes}
@@ -688,6 +682,12 @@ export function AssessmentReport({
                 placeholder="—"
                 className="min-h-0 flex-1 overflow-hidden text-[9px] leading-[1.35] text-foreground"
               />
+            </div>
+            <div className="rounded-md border border-[var(--level-ideal)]/40 bg-[var(--level-ideal-soft)] px-2.5 py-2 text-[9px] leading-[1.35]">
+              <span className="font-bold text-brand-dark">Análise:</span>{" "}
+              {history.length >= 2
+                ? "Tendência de melhora nos indicadores centrais, com melhor recuperação e estabilidade da carga interna."
+                : "Aguardando novas avaliações para consolidar a leitura evolutiva dos indicadores."}
             </div>
           </div>
         </div>
