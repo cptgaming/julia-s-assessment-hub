@@ -229,18 +229,18 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
   const fadigaSeries = series.map((a) => ({ x: shortDate(a.assessment_date), y: a.data.indicadores.fadiga_nivel.valor }));
 
   const diagItems = [
-    { key: "estado_atual", label: "ESTADO ATUAL", value: d.diagnostico.estado_atual },
-    { key: "fadiga", label: "NÍVEL DE FADIGA", value: d.diagnostico.fadiga },
-    { key: "risco_lesao", label: "RISCO DE LESÃO", value: d.diagnostico.risco_lesao },
-    { key: "evolucao", label: "EVOLUÇÃO", value: d.diagnostico.evolucao },
+    { key: "estado_atual", label: "ESTADO ATUAL", emoji: "💪", value: d.diagnostico.estado_atual },
+    { key: "fadiga", label: "NÍVEL DE FADIGA", emoji: "🥱", value: d.diagnostico.fadiga },
+    { key: "risco_lesao", label: "RISCO DE LESÃO", emoji: "🩹", value: d.diagnostico.risco_lesao },
+    { key: "evolucao", label: "EVOLUÇÃO", emoji: "📈", value: d.diagnostico.evolucao },
   ];
 
   const estiloRows = [
-    { key: "sono", label: "SONO" },
-    { key: "estresse", label: "ESTRESSE" },
-    { key: "alimentacao", label: "ALIMENTAÇÃO" },
-    { key: "hidratacao", label: "HIDRATAÇÃO" },
-    { key: "recuperacao", label: "RECUPERAÇÃO" },
+    { key: "sono", label: "SONO", emoji: "😴" },
+    { key: "estresse", label: "ESTRESSE", emoji: "🧠" },
+    { key: "alimentacao", label: "ALIMENTAÇÃO", emoji: "🍎" },
+    { key: "hidratacao", label: "HIDRATAÇÃO", emoji: "💧" },
+    { key: "recuperacao", label: "RECUPERAÇÃO", emoji: "🛌" },
   ] as const;
 
   const zoneColors: Record<string, string> = {
@@ -312,7 +312,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             const col = levelColor(c.value.level);
             return (
               <View key={c.key} style={s.diagCard}>
-                <View style={{ height: 4 }} />
+                <Text style={{ fontSize: 11, marginBottom: 1 }}>{c.emoji}</Text>
                 <Text style={s.diagLabel}>{c.label}</Text>
                 <Text style={[s.diagValue, { color: col.fg }]}>{LEVEL_LABEL[c.value.level].toUpperCase()}</Text>
                 <Text style={s.diagDesc}>{c.value.descricao}</Text>
@@ -320,7 +320,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
             );
           })}
           <View style={s.diagResume}>
-            <Text style={s.fieldLabel}>RESUMO EM UMA FRASE</Text>
+            <Text style={s.fieldLabel}>💡 RESUMO EM UMA FRASE</Text>
             <Text style={{ fontSize: 7.5, fontStyle: "italic", marginTop: 3, lineHeight: 1.35 }}>{d.diagnostico.resumo}</Text>
           </View>
         </View>
@@ -336,15 +336,16 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
                 <Text style={[s.th, { flex: 1 }]}>COMENTÁRIO</Text>
               </View>
               {[
-                { title: "FC DE REPOUSO", value: `${d.indicadores.fc_repouso.valor} bpm`, sub: `${d.indicadores.fc_repouso.delta > 0 ? "+" : ""}${d.indicadores.fc_repouso.delta} vs última`, interp: d.indicadores.fc_repouso.interpretacao },
-                { title: "QUALIDADE DO SONO", value: d.indicadores.qualidade_sono.horas, level: d.indicadores.qualidade_sono.level, interp: d.indicadores.qualidade_sono.interpretacao },
-                { title: "NÍVEL DE ENERGIA", value: `${d.indicadores.energia.valor} / 10`, level: d.indicadores.energia.level, interp: d.indicadores.energia.interpretacao },
-                { title: "NÍVEL DE FADIGA", value: `${d.indicadores.fadiga_nivel.valor} / 10`, level: d.indicadores.fadiga_nivel.level, interp: d.indicadores.fadiga_nivel.interpretacao },
-                { title: "HIDRATAÇÃO", level: d.indicadores.hidratacao.level, interp: d.indicadores.hidratacao.interpretacao },
+                { title: "FC DE REPOUSO", emoji: "❤️", value: `${d.indicadores.fc_repouso.valor} bpm`, sub: `${d.indicadores.fc_repouso.delta > 0 ? "+" : ""}${d.indicadores.fc_repouso.delta} vs última`, interp: d.indicadores.fc_repouso.interpretacao },
+                { title: "QUALIDADE DO SONO", emoji: "😴", value: d.indicadores.qualidade_sono.horas, level: d.indicadores.qualidade_sono.level, interp: d.indicadores.qualidade_sono.interpretacao },
+                { title: "NÍVEL DE ENERGIA", emoji: "⚡", value: `${d.indicadores.energia.valor} / 10`, level: d.indicadores.energia.level, interp: d.indicadores.energia.interpretacao },
+                { title: "NÍVEL DE FADIGA", emoji: "🥱", value: `${d.indicadores.fadiga_nivel.valor} / 10`, level: d.indicadores.fadiga_nivel.level, interp: d.indicadores.fadiga_nivel.interpretacao },
+                { title: "HIDRATAÇÃO", emoji: "💧", level: d.indicadores.hidratacao.level, interp: d.indicadores.hidratacao.interpretacao },
               ].map((row, i) => (
                 <View key={i} style={s.tr}>
-                  <View style={[s.td, { width: 80, justifyContent: "center" }]}>
-                    <Text style={{ fontSize: 7, fontWeight: 700 }}>{row.title}</Text>
+                  <View style={[s.td, { width: 80, flexDirection: "row", alignItems: "center" }]}>
+                    <Text style={{ fontSize: 9, marginRight: 3 }}>{row.emoji}</Text>
+                    <Text style={{ fontSize: 7, fontWeight: 700, flex: 1 }}>{row.title}</Text>
                   </View>
                   <View style={[s.td, { width: 60 }]}>
                     {row.value && <Text style={{ fontSize: 7.5, fontWeight: 700 }}>{row.value}</Text>}
@@ -430,7 +431,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
                 const v = (d.estilo_vida as Record<string, { level: Level; descricao: string }>)[row.key];
                 return (
                   <View key={row.key} style={{ flexDirection: "row", marginBottom: 4, alignItems: "flex-start" }}>
-                    <View style={{ width: 6 }} />
+                    <Text style={{ fontSize: 9, marginRight: 3, width: 12 }}>{row.emoji}</Text>
                     <Text style={{ width: 56, fontSize: 6.5, fontWeight: 700 }}>{row.label}</Text>
                     <View style={{ width: 52 }}><LevelChip level={v.level} /></View>
                     <Text style={{ flex: 1, fontSize: 6.5, color: C.muted, lineHeight: 1.3 }}>{v.descricao}</Text>
@@ -444,11 +445,11 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
           <View style={{ flex: 1.04 }}>
             <SectionTitle n={7} title="Alertas e Observações" />
             <View style={{ borderWidth: 1, borderColor: C.atencao, backgroundColor: C.atencaoSoft, borderRadius: 4, padding: 5, marginBottom: 4 }}>
-              <Text style={{ fontSize: 7, fontWeight: 700, color: C.atencao, marginBottom: 2 }}>ATENÇÃO</Text>
+              <Text style={{ fontSize: 7, fontWeight: 700, color: C.atencao, marginBottom: 2 }}>⚠️ ATENÇÃO</Text>
               <Text style={{ fontSize: 7, lineHeight: 1.35 }}>{d.alertas.atencao}</Text>
             </View>
             <View style={{ borderWidth: 1, borderColor: C.ideal, backgroundColor: C.idealSoft, borderRadius: 4, padding: 5, marginBottom: 4 }}>
-              <Text style={{ fontSize: 7, fontWeight: 700, color: C.ideal, marginBottom: 2 }}>PONTOS POSITIVOS</Text>
+              <Text style={{ fontSize: 7, fontWeight: 700, color: C.ideal, marginBottom: 2 }}>✅ PONTOS POSITIVOS</Text>
               <Text style={{ fontSize: 7, lineHeight: 1.35 }}>{d.alertas.pontos_positivos}</Text>
             </View>
             {d.alertas.observacoes ? (
@@ -486,7 +487,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
               <Text style={{ fontSize: 12, fontWeight: 700, color: C.dark, marginTop: 2 }}>{fmtDate(d.proximos_passos.proxima_avaliacao)}</Text>
             </View>
             <View style={{ borderWidth: 1, borderColor: C.orange, backgroundColor: C.orangeSoft, borderRadius: 4, padding: 5 }}>
-              <Text style={{ fontSize: 7, fontStyle: "italic", textAlign: "center", lineHeight: 1.35 }}>{d.proximos_passos.mensagem}</Text>
+              <Text style={{ fontSize: 7, fontStyle: "italic", textAlign: "center", lineHeight: 1.35 }}>💪 {d.proximos_passos.mensagem}</Text>
             </View>
           </View>
         </View>
@@ -494,7 +495,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
         {/* Footer */}
         <View style={s.footer}>
           <View style={{ width: 150, justifyContent: "center" }}>
-            <Text style={{ fontSize: 6, fontWeight: 700, color: C.dark, letterSpacing: 0.4 }}>IMPORTANTE</Text>
+            <Text style={{ fontSize: 6, fontWeight: 700, color: C.dark, letterSpacing: 0.4 }}>⭐ IMPORTANTE</Text>
             <Text style={{ fontSize: 6, color: C.muted, lineHeight: 1.3, marginTop: 1 }}>
               Este relatório não substitui diagnóstico médico. Em caso de dúvidas ou sintomas, procure um profissional de saúde.
             </Text>
