@@ -430,7 +430,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
                 const v = (d.estilo_vida as Record<string, { level: Level; descricao: string }>)[row.key];
                 return (
                   <View key={row.key} style={{ flexDirection: "row", marginBottom: 4, alignItems: "flex-start" }}>
-                    <Text style={{ fontSize: 9, marginRight: 3, width: 12 }}>{row.emoji}</Text>
+                    <View style={{ width: 6 }} />
                     <Text style={{ width: 56, fontSize: 6.5, fontWeight: 700 }}>{row.label}</Text>
                     <View style={{ width: 52 }}><LevelChip level={v.level} /></View>
                     <Text style={{ flex: 1, fontSize: 6.5, color: C.muted, lineHeight: 1.3 }}>{v.descricao}</Text>
@@ -444,7 +444,7 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
           <View style={{ flex: 1.04 }}>
             <SectionTitle n={7} title="Alertas e Observações" />
             <View style={{ borderWidth: 1, borderColor: C.atencao, backgroundColor: C.atencaoSoft, borderRadius: 4, padding: 5, marginBottom: 4 }}>
-              <Text style={{ fontSize: 7, fontWeight: 700, color: C.atencao, marginBottom: 2 }}>⚠️ ATENÇÃO</Text>
+              <Text style={{ fontSize: 7, fontWeight: 700, color: C.atencao, marginBottom: 2 }}>ATENÇÃO</Text>
               <Text style={{ fontSize: 7, lineHeight: 1.35 }}>{d.alertas.atencao}</Text>
             </View>
             <View style={{ borderWidth: 1, borderColor: C.ideal, backgroundColor: C.idealSoft, borderRadius: 4, padding: 5, marginBottom: 4 }}>
