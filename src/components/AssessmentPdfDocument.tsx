@@ -444,17 +444,17 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
               <Text style={{ fontSize: 6, fontWeight: 700, color: C.ideal, marginBottom: 1 }}>✅ PONTOS POSITIVOS</Text>
               <Text style={{ fontSize: 6.5, lineHeight: 1.3 }}>{d.alertas.pontos_positivos}</Text>
             </View>
-            <View style={[s.card, { padding: 4, marginBottom: 3, minHeight: 25 }]}>
-              <Text style={{ fontSize: 6, fontWeight: 700, color: C.dark, marginBottom: 1 }}>OBSERVAÇÕES</Text>
-              <Text style={{ fontSize: 6.5, lineHeight: 1.3 }}>{d.alertas.observacoes || "—"}</Text>
-            </View>
-            <View style={{ borderWidth: 1, borderColor: C.ideal, backgroundColor: C.idealSoft, borderRadius: 4, padding: 4 }}>
+            <View style={{ borderWidth: 1, borderColor: C.ideal, backgroundColor: C.idealSoft, borderRadius: 4, padding: 4, marginBottom: 3 }}>
               <Text style={{ fontSize: 6.5, lineHeight: 1.3 }}>
                 <Text style={{ fontWeight: 700 }}>Análise: </Text>
                 {history.length >= 2
                   ? "Tendência de melhora nos indicadores centrais, com melhor recuperação e estabilidade da carga interna."
                   : "Aguardando novas avaliações para consolidar a leitura evolutiva dos indicadores."}
               </Text>
+            </View>
+            <View style={[s.card, { padding: 4, minHeight: 25 }]}>
+              <Text style={{ fontSize: 6, fontWeight: 700, color: C.dark, marginBottom: 1 }}>OBSERVAÇÕES</Text>
+              <Text style={{ fontSize: 6.5, lineHeight: 1.3 }}>{d.alertas.observacoes || "—"}</Text>
             </View>
           </View>
 

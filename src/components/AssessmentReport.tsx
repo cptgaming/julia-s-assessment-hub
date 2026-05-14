@@ -672,6 +672,12 @@ export function AssessmentReport({
                 />
               }
             />
+            <div className="rounded-md border border-[var(--level-ideal)]/40 bg-[var(--level-ideal-soft)] px-2.5 py-2 text-[9px] leading-[1.35]">
+              <span className="font-bold text-brand-dark">Análise:</span>{" "}
+              {history.length >= 2
+                ? "Tendência de melhora nos indicadores centrais, com melhor recuperação e estabilidade da carga interna."
+                : "Aguardando novas avaliações para consolidar a leitura evolutiva dos indicadores."}
+            </div>
             <div className="flex h-[45px] flex-col overflow-hidden rounded-md border border-border bg-card p-2">
               <div className="mb-1 text-[9px] font-bold uppercase tracking-[0.08em] text-brand-dark">Observações</div>
               <EditableText
@@ -682,12 +688,6 @@ export function AssessmentReport({
                 placeholder="—"
                 className="min-h-0 flex-1 overflow-hidden text-[9px] leading-[1.35] text-foreground"
               />
-            </div>
-            <div className="rounded-md border border-[var(--level-ideal)]/40 bg-[var(--level-ideal-soft)] px-2.5 py-2 text-[9px] leading-[1.35]">
-              <span className="font-bold text-brand-dark">Análise:</span>{" "}
-              {history.length >= 2
-                ? "Tendência de melhora nos indicadores centrais, com melhor recuperação e estabilidade da carga interna."
-                : "Aguardando novas avaliações para consolidar a leitura evolutiva dos indicadores."}
             </div>
           </div>
         </div>
