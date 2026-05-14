@@ -365,14 +365,6 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
               <View style={{ width: "48.5%" }}><MiniChart title="NÍVEL DE ENERGIA" data={energiaSeries} domain={[0, 10]} color={C.ideal} /></View>
               <View style={{ width: "48.5%" }}><MiniChart title="NÍVEL DE FADIGA" data={fadigaSeries} domain={[0, 10]} color={C.critico} /></View>
             </View>
-            {history.length >= 2 && (
-              <View style={{ marginTop: 4, borderWidth: 1, borderColor: C.ideal, backgroundColor: C.idealSoft, borderRadius: 4, padding: 5 }}>
-                <Text style={{ fontSize: 7, lineHeight: 1.35 }}>
-                  <Text style={{ fontWeight: 700 }}>Análise: </Text>
-                  Tendência de melhora nos indicadores centrais, com melhor recuperação e estabilidade da carga interna.
-                </Text>
-              </View>
-            )}
           </View>
         </View>
 
@@ -444,20 +436,26 @@ export function AssessmentPdfDocument({ assessment, history = [] }: { assessment
           {/* 7 Alertas */}
           <View style={{ flex: 1.04 }}>
             <SectionTitle n={7} title="Alertas e Observações" />
-            <View style={{ borderWidth: 1, borderColor: C.atencao, backgroundColor: C.atencaoSoft, borderRadius: 4, padding: 5, marginBottom: 4 }}>
-              <Text style={{ fontSize: 7, fontWeight: 700, color: C.atencao, marginBottom: 2 }}>⚠️ ATENÇÃO</Text>
-              <Text style={{ fontSize: 7, lineHeight: 1.35 }}>{d.alertas.atencao}</Text>
+            <View style={{ borderWidth: 1, borderColor: C.atencao, backgroundColor: C.atencaoSoft, borderRadius: 4, padding: 4, marginBottom: 3 }}>
+              <Text style={{ fontSize: 6, fontWeight: 700, color: C.atencao, marginBottom: 1 }}>⚠️ ATENÇÃO</Text>
+              <Text style={{ fontSize: 6.5, lineHeight: 1.3 }}>{d.alertas.atencao}</Text>
             </View>
-            <View style={{ borderWidth: 1, borderColor: C.ideal, backgroundColor: C.idealSoft, borderRadius: 4, padding: 5, marginBottom: 4 }}>
-              <Text style={{ fontSize: 7, fontWeight: 700, color: C.ideal, marginBottom: 2 }}>✅ PONTOS POSITIVOS</Text>
-              <Text style={{ fontSize: 7, lineHeight: 1.35 }}>{d.alertas.pontos_positivos}</Text>
+            <View style={{ borderWidth: 1, borderColor: C.ideal, backgroundColor: C.idealSoft, borderRadius: 4, padding: 4, marginBottom: 3 }}>
+              <Text style={{ fontSize: 6, fontWeight: 700, color: C.ideal, marginBottom: 1 }}>✅ PONTOS POSITIVOS</Text>
+              <Text style={{ fontSize: 6.5, lineHeight: 1.3 }}>{d.alertas.pontos_positivos}</Text>
             </View>
-            {d.alertas.observacoes ? (
-              <View style={s.card}>
-                <Text style={{ fontSize: 6.5, fontWeight: 700, color: C.dark, marginBottom: 2 }}>OBSERVAÇÕES</Text>
-                <Text style={{ fontSize: 7, lineHeight: 1.35 }}>{d.alertas.observacoes}</Text>
-              </View>
-            ) : null}
+            <View style={[s.card, { padding: 4, marginBottom: 3, minHeight: 25 }]}>
+              <Text style={{ fontSize: 6, fontWeight: 700, color: C.dark, marginBottom: 1 }}>OBSERVAÇÕES</Text>
+              <Text style={{ fontSize: 6.5, lineHeight: 1.3 }}>{d.alertas.observacoes || "—"}</Text>
+            </View>
+            <View style={{ borderWidth: 1, borderColor: C.ideal, backgroundColor: C.idealSoft, borderRadius: 4, padding: 4 }}>
+              <Text style={{ fontSize: 6.5, lineHeight: 1.3 }}>
+                <Text style={{ fontWeight: 700 }}>Análise: </Text>
+                {history.length >= 2
+                  ? "Tendência de melhora nos indicadores centrais, com melhor recuperação e estabilidade da carga interna."
+                  : "Aguardando novas avaliações para consolidar a leitura evolutiva dos indicadores."}
+              </Text>
+            </View>
           </View>
 
           {/* 8 Direcionamento */}
